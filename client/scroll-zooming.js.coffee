@@ -8,7 +8,7 @@ cameraRotationFlex = 0 * cameraRotationBase
 cameraPositionBaseY = 50
 cameraPositionFlexY = 2 * cameraPositionBaseY
 
-cameraPositionBaseZ = 5
+cameraPositionBaseZ = 0
 cameraPositionFlexZ = -1 * cameraPositionBaseZ
 
 scrolledRatio = 0
