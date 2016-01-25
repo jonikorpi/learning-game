@@ -2,13 +2,13 @@ browser = $(window)
 scroller = $("#scroller")
 cameraContainer = $("#camera-container")
 
-cameraRotationBase = -90
-cameraRotationFlex = 0 * cameraRotationBase
+cameraRotationBase = -67.5
+cameraRotationFlex = (-90 - cameraRotationBase)
 
-cameraPositionBaseY = 50
-cameraPositionFlexY = 2 * cameraPositionBaseY
+cameraPositionBaseY = 60
+cameraPositionFlexY = 1.618 * cameraPositionBaseY
 
-cameraPositionBaseZ = 0
+cameraPositionBaseZ = (90 + cameraRotationBase)
 cameraPositionFlexZ = -1 * cameraPositionBaseZ
 
 scrolledRatio = 0
