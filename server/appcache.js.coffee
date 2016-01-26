@@ -1,4 +1,4 @@
-Meteor.AppCache.config
-  onlineOnly: [
-    "/fonts/"
-  ]
+# Meteor.AppCache.config
+#   onlineOnly: [
+#     "/fonts/"
+#   ]

@@ -21,7 +21,6 @@ fourseven:scss
 browser-policy
 peerlibrary:reactive-publish
 peerlibrary:reactive-mongo
-appcache
 coffeescript
 
 
