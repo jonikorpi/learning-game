@@ -18,7 +18,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 iron:router
 fourseven:scss
-browser-policy
 peerlibrary:reactive-publish
 peerlibrary:reactive-mongo
 coffeescript
