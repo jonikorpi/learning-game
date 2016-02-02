@@ -15,10 +15,21 @@ scrolledRatio = 0
 
 Game.moveCamera = ->
   # TODO: improve performance
-  scrolledRatio = browser.scrollTop() / (browser.height() - scroller.height())
+  scrollTop = browser.scrollTop()
+  scrollerHeight = scroller.height()
+  browserHeight = browser.height()
+
+  scrolledRatio = scrollTop / (browserHeight - scrollerHeight)
   Session.set "cameraRotation",  scrolledRatio * cameraRotationFlex  + cameraRotationBase
   Session.set "cameraPositionY", scrolledRatio * cameraPositionFlexY + cameraPositionBaseY
   Session.set "cameraPositionZ", scrolledRatio * cameraPositionFlexZ + cameraPositionBaseZ
+
+  console.log scrollTop
+
+  if scrollTop == 0
+    browser.scrollTop( scrollerHeight + browserHeight - 1 )
+  else if scrollTop == scrollerHeight + browserHeight
+    browser.scrollTop( 1 )
 
 Template.game.onCreated ->
   Game.moveCamera()
