@@ -1,5 +1,19 @@
 browser = $(window)
 
+fovMultiplier = 35000 # makes 9000m wide objects fit within 375px
+minFov = 70
+maxFov = 120
+
+Game.setFov = ->
+  newFov = fovMultiplier / browser.width()
+
+  if newFov < minFov
+    newFov = minFov
+  else if newFov > maxFov
+    newFov = maxFov
+
+  Session.set "cameraFov", newFov
+
 Game.moveCamera = ->
   # TODO: improve performance
 
@@ -10,7 +24,6 @@ Game.moveCamera = ->
 
   scrolledRatio = scrollTop / (scrollerHeight - browserHeight)
   Session.set "cameraRotation", scrolledRatio * -360
-  Session.set "cameraFov", 80
 
   if scrollTop == 0
     browser.scrollTop( scrollerHeight - browserHeight - 1 )
@@ -20,12 +33,13 @@ Game.moveCamera = ->
 Template.viewport.onCreated ->
   Session.setDefault "cameraRotation", 0
   Session.setDefault "cameraFov", 80
+  Game.setFov()
 
   browser.on "scroll", (event) ->
     requestAnimationFrame(Game.moveCamera)
 
   browser.on "resize", (event) ->
-    Session.set "cameraFov", 80
+    requestAnimationFrame(Game.setFov)
 
 Template.viewport.helpers
   cameraRotation: ->
