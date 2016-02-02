@@ -41,14 +41,7 @@
   </div>
 
   <a-scene>
-
-    <a-light
-      color="#fff"
-      position="-40 40 20"
-      intensity="2"
-      type="directional"
-    >
-    </a-light>
+    {{> lights}}
 
     {{> segment position="0 0 -10000" rotation=" 90 0 0"}}
     {{> segment position="0 0  10000" rotation="-90 0 0"}}
@@ -61,14 +54,25 @@
 </template>
 
 <template name="segment">
-  <a-cube
-    color="cyan"
-    height="1000"
-    width ="9000"
-    depth ="6000"
+  <a-entity
     position="{{position}}"
     rotation="{{rotation}}"
+    {{attributes}}
   >
+  {{#each tiles}}
+    {{> tile}}
+  {{/each}}
+  </a-entity>
+</template>
+
+<template name="tile">
+  <a-cube
+    {{attributes}}
+  >
+    <!-- <a-animation
+      {{animationAttributes}}
+    >
+    </a-animation> -->
   </a-cube>
 </template>
 
@@ -95,5 +99,45 @@
       "
     >
     </a-entity>
+  </a-entity>
+</template>
+
+<template name="lights">
+  <a-entity
+    id="star"
+    position="0 0 0"
+    rotation="0 0 0"
+  >
+    <a-animation
+      attribute="rotation"
+      to="-360 0 0"
+      dur="60000"
+      fill="forwards"
+      repeat="indefinite"
+      easing="linear"
+    >
+    </a-animation>
+    <a-light
+      type="spot"
+      color="rgb(255, 255, 195)"
+      angle="90"
+      intensity="0.618"
+      exponent="1"
+    >
+    </a-light>
+  </a-entity>
+
+  <a-entity
+    id="moon"
+    position="0 0 0"
+    rotation="180 0 0"
+  >
+    <a-light
+      type="point"
+      color="white"
+      distance="0"
+      intensity="0.5"
+    >
+    </a-light>
   </a-entity>
 </template>
