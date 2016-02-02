@@ -40,30 +40,58 @@
 
   <a-scene>
 
-    <a-sky src="/starfield.jpg"></a-sky>
-
-    <a-light color="#fff" position="-40 40 20" intensity="2" type="directional"></a-light>
-
-    {{> hex}}
-
-    <a-entity
-      id="camera-container"
-      rotation="{{cameraRotation}} 0 0"
-      position="0 {{cameraPositionY}} {{cameraPositionZ}}"
+    <a-light
+      color="#fff"
+      position="-40 40 20"
+      intensity="2"
+      type="directional"
     >
-      <a-entity camera></a-entity>
-    </a-entity>
+    </a-light>
+
+    {{> segment position="0 0 -10000" rotation=" 90 0 0"}}
+    {{> segment position="0 0  10000" rotation="-90 0 0"}}
+    {{> segment position="0 -10000 0" rotation="  0 0 0"}}
+    {{> segment position="0  10000 0" rotation="180 0 0"}}
+
+    {{> viewport}}
 
   </a-scene>
 </template>
 
-<template name="hex">
-  <a-cylinder
-    color="#222"
-    segments-radial="6"
-    height="5"
-    radius="5"
-    position="0 -5 0"
-    rotation="0 90 0"
-  ></a-cylinder>
+<template name="segment">
+  <a-cube
+    color="cyan"
+    height="1000"
+    width ="9000"
+    depth ="6000"
+    position="{{position}}"
+    rotation="{{rotation}}"
+  >
+  </a-cube>
+</template>
+
+<template name="sky">
+  <a-sky
+    radius="50000"
+    src="/starfield.jpg"
+  >
+  </a-sky>
+</template>
+
+<template name="viewport">
+  <a-entity
+    id="viewport"
+    rotation="{{cameraRotation}} 0 0"
+    position="0 0 0"
+  >
+    {{> sky}}
+    
+    <a-entity
+      camera="
+        far: 50000;
+        fov: {{cameraFov}};
+      "
+    >
+    </a-entity>
+  </a-entity>
 </template>
