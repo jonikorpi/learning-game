@@ -1,18 +1,19 @@
 browser = $(window)
 
-fovMultiplier = 35000 # makes 9000m wide objects fit within 375px
-minFov = 70
-maxFov = 120
+# positionMultiplier = -35000 #
+# defaultPosition = 0
+# minPosition = 0
+# maxPosition = 120
 
-Game.setFov = ->
-  newFov = fovMultiplier / browser.width()
-
-  if newFov < minFov
-    newFov = minFov
-  else if newFov > maxFov
-    newFov = maxFov
-
-  Session.set "cameraFov", newFov
+# Game.setPosition = ->
+#   newPosition = positionMultiplier / browser.width()
+#
+#   if newPosition < minPosition
+#     newPosition = minPosition
+#   else if newPosition > maxPosition
+#     newPosition = maxPosition
+#
+#   Session.set "cameraPosition", newPosition
 
 Game.moveCamera = ->
   # TODO: improve performance
@@ -32,17 +33,17 @@ Game.moveCamera = ->
 
 Template.viewport.onCreated ->
   Session.setDefault "cameraRotation", 0
-  Session.setDefault "cameraFov", 80
-  Game.setFov()
+  # Session.setDefault "cameraPosition", defaultPosition
+  # Game.setPosition()
 
   browser.on "scroll", (event) ->
     requestAnimationFrame(Game.moveCamera)
 
-  browser.on "resize", (event) ->
-    requestAnimationFrame(Game.setFov)
+  # browser.on "resize", (event) ->
+  #   requestAnimationFrame(Game.setPosition)
 
 Template.viewport.helpers
   cameraRotation: ->
     return Session.get "cameraRotation"
-  cameraFov: ->
-    return Session.get "cameraFov"
+  # cameraPosition: ->
+  #   return Session.get "cameraPosition"
