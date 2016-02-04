@@ -20,6 +20,5 @@ iron:router
 fourseven:scss
 peerlibrary:reactive-publish
 peerlibrary:reactive-mongo
-coffeescript
 
 
