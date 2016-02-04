@@ -3,7 +3,7 @@ Game.tilesPerColumn = 62
 Game.tileSize = 5
 
 Game.tileDepthModifier = 3
-Game.tileHeightModifier = -0.146
+Game.tileHeightModifier = 0.146
 # Game.tileMargin = Game.tileSize / 10
 
 Game.tileDistance = (Game.tilesPerColumn * Game.tileSize) / (2 * Math.PI)
@@ -39,13 +39,17 @@ Template.tile.helpers
 
     color = "white"
     zTranslate = 0
+    metalness = 0
+    roughness = 0.146
 
     switch @type
       when 0
-        color = "cyan"
+        color = "#77C3F2"
       when 1
-        color = "green"
-        zTranslate = Game.tileSize * Game.tileHeightModifier
+        color = "#4F7302"
+        zTranslate = -Game.tileSize * Game.tileHeightModifier
+        metalness = 0.236
+        roughness = 1.0
 
     rad = @loc[1] * (2 * Math.PI) / Game.tilesPerColumn
 
@@ -53,10 +57,10 @@ Template.tile.helpers
     y = Game.tileDistance * Math.cos(rad)
     z = Game.tileDistance * Math.sin(rad)
 
-    angle = Game.rightAngle(z, y) * -1
+    angle = Game.rightAngle(z, y) * -1 + 90
 
     position = "#{x} #{y} #{z}"
-    translate = "0 0 #{zTranslate}"
+    translate = "0 #{zTranslate} 0"
     rotation = "#{angle} 0 0"
 
     return {
@@ -65,19 +69,20 @@ Template.tile.helpers
       geometry  : "
         primitive : box;
         translate : #{translate};
-        height    : #{Game.tileSize};
+        height    : #{Game.tileSize * Game.tileDepthModifier};
         width     : #{Game.tileSize};
-        depth     : #{Game.tileSize * Game.tileDepthModifier};
+        depth     : #{Game.tileSize};
       "
       material  : "
-        metalness : 0.0;
+        metalness : #{metalness};
         color     : #{color};
+        roughness : #{roughness}
       "
     }
   animationAttributes: ->
     return {
-      attribute : "geometry.translate"
-      to        : "0 #{Game.tileSize / -10} 0"
+      attribute : "geometry.translate.z"
+      to        : Game.tileSize
       begin     : "#{(@loc[1] + 1) * Game.waveDuration + (@loc[0] + 1) * Game.waveDuration/50}"
       dur       : "#{Game.waveDuration}"
       direction : "alternate"
