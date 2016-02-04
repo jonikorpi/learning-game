@@ -1,83 +1,60 @@
 Game.tilesPerRow = 9
-Game.tilesPerColumn = 6
+Game.tilesPerColumn = 100
 Game.tileSize = 1000
+Game.tileMargin = Game.tileSize / 10
+
+Game.tileDistance = (Game.tilesPerColumn * Game.tileSize) / (2 * Math.PI)
+Game.tileCount = Game.tilesPerRow * Game.tilesPerColumn
 
 Game.waveDuration = 414
 
-Template.segment.helpers
+Template.game.helpers
   attributes: ->
     return {
       # position : "{{position}}"
       # rotation : "{{rotation}}"
     }
   tiles: ->
-    return [
-      {loc: [0,0], type: 0}
-      {loc: [1,0], type: 0}
-      {loc: [2,0], type: 0}
-      {loc: [3,0], type: 0}
-      {loc: [4,0], type: 0}
-      {loc: [5,0], type: 0}
-      {loc: [6,0], type: 0}
-      {loc: [7,0], type: 0}
-      {loc: [8,0], type: 0}
-      {loc: [0,1], type: 0}
-      {loc: [1,1], type: 0}
-      {loc: [2,1], type: 0}
-      {loc: [3,1], type: 0}
-      {loc: [4,1], type: 0}
-      {loc: [5,1], type: 0}
-      {loc: [6,1], type: 0}
-      {loc: [7,1], type: 0}
-      {loc: [8,1], type: 0}
-      {loc: [0,2], type: 0}
-      {loc: [1,2], type: 0}
-      {loc: [2,2], type: 0}
-      {loc: [3,2], type: 0}
-      {loc: [4,2], type: 0}
-      {loc: [5,2], type: 0}
-      {loc: [6,2], type: 0}
-      {loc: [7,2], type: 0}
-      {loc: [8,2], type: 0}
-      {loc: [0,3], type: 0}
-      {loc: [1,3], type: 0}
-      {loc: [2,3], type: 0}
-      {loc: [3,3], type: 0}
-      {loc: [4,3], type: 0}
-      {loc: [5,3], type: 0}
-      {loc: [6,3], type: 0}
-      {loc: [7,3], type: 0}
-      {loc: [8,3], type: 0}
-      {loc: [0,4], type: 0}
-      {loc: [1,4], type: 0}
-      {loc: [2,4], type: 0}
-      {loc: [3,4], type: 0}
-      {loc: [4,4], type: 0}
-      {loc: [5,4], type: 0}
-      {loc: [6,4], type: 0}
-      {loc: [7,4], type: 0}
-      {loc: [8,4], type: 0}
-      {loc: [0,5], type: 0}
-      {loc: [1,5], type: 0}
-      {loc: [2,5], type: 0}
-      {loc: [3,5], type: 0}
-      {loc: [4,5], type: 0}
-      {loc: [5,5], type: 0}
-      {loc: [6,5], type: 0}
-      {loc: [7,5], type: 0}
-      {loc: [8,5], type: 0}
-    ]
+    tiles = []
+
+    for row in [0..Game.tilesPerColumn-1]
+      for column in [0..Game.tilesPerRow-1]
+        tiles.push( {loc: [column,row], type: _.random(0, 1)} )
+
+    return tiles
 
 Template.tile.helpers
   attributes: ->
+    # for (var i = 0; i < numChildren; i++) {
+    #   var rad = i * (2 * Math.PI) / numChildren;
+    #   positions.push([
+    #     startPosition.x + data.radius * Math.cos(rad),
+    #     startPosition.y,
+    #     startPosition.z + data.radius * Math.sin(rad)
+    #   ]);
+    # }
+
+    rad = @loc[1] * (2 * Math.PI) / Game.tilesPerColumn
+
+    x = (@loc[0] * Game.tileSize) + (Game.tilesPerRow * Game.tileSize * -0.5)
+    y = Game.tileDistance * Math.cos(rad)
+    z = Game.tileDistance * Math.sin(rad)
+
+    angle = Game.rightAngle(z, y) * -1
+
+    position = "#{x} #{y} #{z}"
+    translate = "#{Game.tileMargin * 0.5} #{Game.tileMargin * 0.5} #{Game.tileMargin * 0.5}"
+    rotation = "#{angle} 0 0"
+
     return {
-      position  : "#{@loc[0] * Game.tileSize + Game.tileSize*0.5} 0 #{@loc[1] * Game.tileSize + Game.tileSize*0.5}"
+      position  : position
+      translate : translate
+      rotation  : rotation
       color     : "cyan"
-      height    : Game.tileSize
-      width     : Game.tileSize
-      depth     : Game.tileSize
-      shader    : "metalness: 0.7;"
-      translate : "#{Game.tilesPerRow * Game.tileSize * -0.5} 0 #{Game.tilesPerColumn * Game.tileSize * -0.5}"
+      height    : Game.tileSize - Game.tileMargin
+      width     : Game.tileSize - Game.tileMargin
+      depth     : Game.tileSize - Game.tileMargin
+      shader    : "metalness: 0.0;"
     }
   animationAttributes: ->
     return {

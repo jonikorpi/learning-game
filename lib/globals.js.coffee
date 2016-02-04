@@ -17,7 +17,14 @@ Game.hypotenuse = (a, b) ->
 Game.rightAngle = (a, b) ->
   c = Game.hypotenuse(a, b)
   sin = b/c
-  return Game.sinToDegrees(sin)
+  angle = Game.sinToDegrees(sin)
+
+  if      a <  0 && b <  0
+    angle = 180 - angle
+  else if a <  0 && b >= 0
+    angle = 180 - angle
+
+  return angle
 
 Game.romanize = (num) ->
   if ! +num

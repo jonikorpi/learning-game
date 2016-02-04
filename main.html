@@ -43,26 +43,13 @@
   <a-scene>
     {{> lights}}
 
-    {{> segment position="0 0 -10000" rotation=" 90 0 0"}}
-    {{> segment position="0 0  10000" rotation="-90 0 0"}}
-    {{> segment position="0 -10000 0" rotation="  0 0 0"}}
-    {{> segment position="0  10000 0" rotation="180 0 0"}}
+    {{#each tiles}}
+      {{> tile}}
+    {{/each}}
 
     {{> viewport}}
 
   </a-scene>
-</template>
-
-<template name="segment">
-  <a-entity
-    position="{{position}}"
-    rotation="{{rotation}}"
-    {{attributes}}
-  >
-  {{#each tiles}}
-    {{> tile}}
-  {{/each}}
-  </a-entity>
 </template>
 
 <template name="tile">
@@ -107,7 +94,7 @@
     position="0 0 0"
     rotation="0 0 0"
   >
-    <a-animation
+    <!-- <a-animation
       attribute="rotation"
       to="-360 0 0"
       dur="60000"
@@ -115,7 +102,7 @@
       repeat="indefinite"
       easing="linear"
     >
-    </a-animation>
+    </a-animation> -->
     <a-light
       type="spot"
       color="rgb(255, 255, 195)"
