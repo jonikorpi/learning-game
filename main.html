@@ -40,16 +40,20 @@
   <div id="scroller">
   </div>
 
-  <a-scene>
-    {{> lights}}
+  <div id="canvas">
 
-    {{#each tiles}}
-      {{> tile}}
-    {{/each}}
+    <a-scene>
+      {{> lights}}
 
-    {{> viewport}}
+      {{#each tiles}}
+        {{> tile}}
+      {{/each}}
 
-  </a-scene>
+      {{> viewport}}
+
+    </a-scene>
+
+  </div>
 </template>
 
 <template name="tile">
