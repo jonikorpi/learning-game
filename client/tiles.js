@@ -3,7 +3,7 @@ Game.tilesPerColumn = 62;
 Game.tileSize = 1000;
 
 Game.tileDepthModifier = 3;
-Game.tileHeightModifier = 0.146;
+Game.tileHeightModifier = 0.236;
 
 Game.tileDistance = (Game.tilesPerColumn * Game.tileSize) / (2 * Math.PI);
 Game.tileCount = Game.tilesPerRow * Game.tilesPerColumn;
