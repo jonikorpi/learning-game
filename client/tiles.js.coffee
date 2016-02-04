@@ -1,7 +1,10 @@
 Game.tilesPerRow = 9
-Game.tilesPerColumn = 100
-Game.tileSize = 1000
-Game.tileMargin = Game.tileSize / 10
+Game.tilesPerColumn = 62
+Game.tileSize = 5
+
+Game.tileDepthModifier = 3
+Game.tileHeightModifier = -0.146
+# Game.tileMargin = Game.tileSize / 10
 
 Game.tileDistance = (Game.tilesPerColumn * Game.tileSize) / (2 * Math.PI)
 Game.tileCount = Game.tilesPerRow * Game.tilesPerColumn
@@ -34,36 +37,45 @@ Template.tile.helpers
     #   ]);
     # }
 
+    color = "white"
+    yTranslate = 0
+
+    switch @type
+      when 0
+        color = "cyan"
+      when 1
+        color = "green"
+        yTranslate = Game.tileSize * Game.tileHeightModifier
+
     rad = @loc[1] * (2 * Math.PI) / Game.tilesPerColumn
 
-    x = (@loc[0] * Game.tileSize) + (Game.tilesPerRow * Game.tileSize * -0.5)
+    x = (@loc[0] * Game.tileSize) + (Game.tilesPerRow * Game.tileSize * -0.5) + (Game.tileSize * 0.5)
     y = Game.tileDistance * Math.cos(rad)
     z = Game.tileDistance * Math.sin(rad)
 
     angle = Game.rightAngle(z, y) * -1
 
     position = "#{x} #{y} #{z}"
-    translate = "#{Game.tileMargin * 0.5} #{Game.tileMargin * 0.5} #{Game.tileMargin * 0.5}"
+    translate = "0 0 #{yTranslate}"
     rotation = "#{angle} 0 0"
 
     return {
       position  : position
       translate : translate
       rotation  : rotation
-      color     : "cyan"
-      height    : Game.tileSize - Game.tileMargin
-      width     : Game.tileSize - Game.tileMargin
-      depth     : Game.tileSize - Game.tileMargin
+      color     : color
+      height    : Game.tileSize
+      width     : Game.tileSize
+      depth     : Game.tileSize * Game.tileDepthModifier
       shader    : "metalness: 0.0;"
     }
   animationAttributes: ->
     return {
-      attribute : "rotation"
-      to        : "-4.73 0 0"
+      attribute : "geometry.translate"
+      to        : "0 #{Game.tileSize / -10} 0"
       begin     : "#{(@loc[1] + 1) * Game.waveDuration + (@loc[0] + 1) * Game.waveDuration/50}"
       dur       : "#{Game.waveDuration}"
       direction : "alternate"
       repeat    : "indefinite"
       easing    : "ease-sine"
-      # fill      : "both"
     }
