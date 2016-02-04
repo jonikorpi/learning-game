@@ -15,7 +15,7 @@ Template.sky.helpers({
   skyAttributes: function() {
     return {
       radius: Game.skyDistance,
-      src: "/starfield.jpg"
+      src: "/starfield.png"
     };
   }
 });
