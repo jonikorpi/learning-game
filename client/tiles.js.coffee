@@ -38,14 +38,14 @@ Template.tile.helpers
     # }
 
     color = "white"
-    yTranslate = 0
+    zTranslate = 0
 
     switch @type
       when 0
         color = "cyan"
       when 1
         color = "green"
-        yTranslate = Game.tileSize * Game.tileHeightModifier
+        zTranslate = Game.tileSize * Game.tileHeightModifier
 
     rad = @loc[1] * (2 * Math.PI) / Game.tilesPerColumn
 
@@ -56,18 +56,23 @@ Template.tile.helpers
     angle = Game.rightAngle(z, y) * -1
 
     position = "#{x} #{y} #{z}"
-    translate = "0 0 #{yTranslate}"
+    translate = "0 0 #{zTranslate}"
     rotation = "#{angle} 0 0"
 
     return {
       position  : position
-      translate : translate
       rotation  : rotation
-      color     : color
-      height    : Game.tileSize
-      width     : Game.tileSize
-      depth     : Game.tileSize * Game.tileDepthModifier
-      shader    : "metalness: 0.0;"
+      geometry  : "
+        primitive : box;
+        translate : #{translate};
+        height    : #{Game.tileSize};
+        width     : #{Game.tileSize};
+        depth     : #{Game.tileSize * Game.tileDepthModifier};
+      "
+      material  : "
+        metalness : 0.0;
+        color     : #{color};
+      "
     }
   animationAttributes: ->
     return {
