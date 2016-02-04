@@ -154,7 +154,7 @@ Template.segment.helpers({
         translate : ${translate};
         height    : ${Game.tileSize * Game.tileHeightModifier * Game.segmentHeightModifier};
         width     : ${Game.tileSize * Game.tilesPerRow};
-        depth     : ${Game.tileSize / 20};
+        depth     : ${Game.tileSize / 15};
       `,
       material: `
         metalness : ${metalness};
