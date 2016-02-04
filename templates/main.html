@@ -41,23 +41,31 @@
   </div>
 
   <div id="canvas">
-
     <a-scene>
-      {{> lights}}
+      <a-entity id="segments">
+        {{#each segments}}
+          {{> segment}}
+        {{/each}}
+      </a-entity>
 
-      {{#each tiles}}
-        {{> tile}}
-      {{/each}}
+      <a-entity id="tiles">
+        {{#each tiles}}
+          {{> tile}}
+        {{/each}}
+      </a-entity>
+
+      <a-entity id="lights">
+        {{> lights}}
+      </a-entity>
 
       {{> viewport}}
-
     </a-scene>
-
   </div>
 </template>
 
 <template name="tile">
   <a-entity
+    class="tile"
     {{attributes}}
   >
     <!-- {{#unless type}}
@@ -69,8 +77,17 @@
   </a-entity>
 </template>
 
+<template name="segment">
+  <a-entity
+    class="segment"
+    {{attributes}}
+  >
+  </a-entity>
+</template>
+
 <template name="sky">
   <a-sky
+    id="sky"
     {{skyAttributes}}
   >
   </a-sky>
@@ -98,7 +115,7 @@
     position="0 0 0"
     light="
       type: point;
-      color: rgb(255, 255, 195);
+      color: rgb(255, 255, 158);
       distance: 0;
       intensity: 1.0;
     "
@@ -117,5 +134,5 @@
 
   </a-entity>
 
-  <a-entity light="type: ambient; color: rgb(23, 23, 97)"></a-entity>
+  <a-entity id="ambient" light="type: ambient; color: rgb(37, 37, 60)"></a-entity>
 </template>
