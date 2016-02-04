@@ -1,0 +1,21 @@
+{
+  "name": "space",
+  "version": "0.0.1",
+  "description": "TBA",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonikorpi/space-2.git"
+  },
+  "author": "Joni Korpi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonikorpi/space-2/issues"
+  },
+  "homepage": "https://github.com/jonikorpi/space-2#readme"
+}
