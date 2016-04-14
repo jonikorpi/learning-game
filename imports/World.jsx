@@ -26,7 +26,6 @@ export default class World extends Component {
 
         <AmbientLight/>
         <StarLight/>
-        <Entity light={{type: 'directional', intensity: 1}} position={[-1, 1, 1]}/>
 
         <Entity geometry="primitive: box" material={{color: "#f0f0f0"}}
                 position="0 0 -5">
