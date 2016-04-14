@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-
 import Aframe from "aframe";
-import {Animation, Entity, Scene} from 'aframe-react';
+import {Animation, Entity, Scene} from "aframe-react";
 
-export default class App extends Component {
+import AmbientLight from "./AmbientLight";
+import StarLight from "./StarLight";
+
+export default class World extends Component {
   getTasks() {
     return [
       { _id: 1, text: 'This is task 1' },
@@ -20,21 +22,18 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="">
-        <h1>Hello world</h1>
-        <Scene>
+      <Scene>
 
-        <Entity light={{type: 'ambient', color: '#888'}}/>
-        <Entity light={{type: 'directional', intensity: 0.5}} position={[-1, 1, 0]}/>
-        <Entity light={{type: 'directional', intensity: 1}} position={[1, 1, 0]}/>
+        <AmbientLight/>
+        <StarLight/>
+        <Entity light={{type: 'directional', intensity: 1}} position={[-1, 1, 1]}/>
 
         <Entity geometry="primitive: box" material={{color: "#f0f0f0"}}
                 position="0 0 -5">
           <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
         </Entity>
 
-        </Scene>
-      </div>
+      </Scene>
     );
   }
 }
