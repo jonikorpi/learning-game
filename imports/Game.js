@@ -3,8 +3,8 @@
 
 Game = {};
 
-Game.worldRadius = 100;
-Game.cameraAltitude = 1;
+Game.cameraAltitude = 2;
+Game.worldRadius = Game.cameraAltitude * 50;
 Game.cameraPositionAngle = 45;
 Game.clipRange = 10 * Game.worldRadius;
 

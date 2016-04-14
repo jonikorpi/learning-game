@@ -14,7 +14,7 @@ export default class Camera extends Component {
         <Entity
           camera={{
             far: this.props.far || 10000,
-            near: this.props.near || 0.01,
+            near: this.props.near || 0.001,
           }}
           look-controls
         />
