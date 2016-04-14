@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
+import Game from "../Game";
 import AmbientLight from "./AmbientLight";
 import StarLight from "./StarLight";
 
@@ -27,7 +28,7 @@ export default class World extends Component {
         <AmbientLight/>
         <StarLight/>
 
-        <Entity geometry="primitive: box" material={{color: "#f0f0f0"}}
+        <Entity geometry="primitive: sphere" material={{color: "#f0f0f0"}}
                 position="0 0 -5">
           <Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>
         </Entity>

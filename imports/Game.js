@@ -8,8 +8,6 @@ Game.tilesPerRow = 8;
 Game.rowsPerSegment = 5;
 Game.tilesPerColumn = Game.segments * Game.rowsPerSegment;
 
-// if Meteor.isClient
-
 //
 // Functions
 
@@ -49,3 +47,8 @@ Game.romanize = function(num) {
   }
   return Array(+digits.join('') + 1).join('M') + roman;
 };
+
+//
+// Export
+
+export default Game;
