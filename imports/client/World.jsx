@@ -7,6 +7,7 @@ import AmbientLight from "./AmbientLight";
 import StarLight from "./StarLight";
 import Camera from "./Camera";
 import Sky from "./Sky";
+import Planet from "./Planet";
 
 export default class World extends Component {
   getTasks() {
@@ -46,24 +47,7 @@ export default class World extends Component {
         <AmbientLight/>
         <StarLight/>
         <Sky color="rgb(187,235,252)"/>
-
-        <Entity
-          geometry={{
-            primitive: "sphere",
-            radius: Game.worldRadius,
-            segmentsWidth: 64,
-            segmentsHeight: 128,
-          }}
-          material={{
-            color: "rgb(161,193,110)",
-            roughness: 1,
-          }}
-          position="0 0 0"
-        >
-
-          {/*<Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>*/}
-
-        </Entity>
+        <Planet/>
 
       </Scene>
     );
