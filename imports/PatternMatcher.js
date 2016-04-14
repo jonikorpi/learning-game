@@ -1,4 +1,4 @@
-export default function patternMatcher {
+export default function patternMatcher () {
   // from collections import OrderedDict
   //
   // UNTRAVERSED = 0
