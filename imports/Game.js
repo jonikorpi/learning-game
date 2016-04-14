@@ -3,10 +3,10 @@
 
 Game = {};
 
-Game.segments = 13;
-Game.tilesPerRow = 8;
-Game.rowsPerSegment = 5;
-Game.tilesPerColumn = Game.segments * Game.rowsPerSegment;
+Game.worldRadius = 100;
+Game.cameraAltitude = 1;
+Game.cameraPositionAngle = 45;
+Game.clipRange = 10 * Game.worldRadius;
 
 //
 // Functions
