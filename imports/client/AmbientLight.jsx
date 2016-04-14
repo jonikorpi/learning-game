@@ -6,6 +6,7 @@ export default class AmbientLight extends Component {
   render() {
     return (
       <Entity
+        id="ambientLight"
         light={{
           type: "ambient",
           color: "hsl(0, 0%, 9%)",

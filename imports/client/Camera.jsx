@@ -4,22 +4,39 @@ import {Animation, Entity, Scene} from "aframe-react";
 
 import Game from "../Game";
 
+import Locator from "./Locator";
+
 export default class Camera extends Component {
+
   render() {
     return (
-      <Entity
-        position={ this.props.position || [0,0,0] }
+      <Locator
+        altitude={Game.cameraAltitude}
+        rotation={[
+          Game.cameraPositionAngle,
+          0,
+          0,
+        ]}
       >
-
         <Entity
-          camera={{
-            far: this.props.far || 10000,
-            near: this.props.near || 0.001,
-          }}
-          look-controls
-        />
+          rotation={[
+            -Game.cameraPositionAngle,
+            0,
+            0,
+          ]}
+        >
+          <Entity
+            camera={{
+              far: this.props.far || 10000,
+              near: this.props.near || 0.001,
+            }}
+            look-controls
+            wasd-controls
+          />
+        </Entity>
 
-      </Entity>
+      </Locator>
     );
   }
+
 }

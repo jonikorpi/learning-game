@@ -6,6 +6,7 @@ export default class StarLight extends Component {
   render() {
     return (
       <Entity
+        id="starLight"
         light={{
           type: "directional",
           intensity: 1,

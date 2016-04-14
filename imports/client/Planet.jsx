@@ -5,6 +5,7 @@ import {Animation, Entity, Scene} from "aframe-react";
 import Game from "../Game";
 
 export default class Planet extends Component {
+
   render() {
     return (
       <Entity
@@ -16,7 +17,7 @@ export default class Planet extends Component {
         }}
         material={{
           color: "rgb(161,193,110)",
-          roughness: 1,
+          roughness: 0.8,
         }}
         position="0 0 0"
       >
@@ -26,4 +27,5 @@ export default class Planet extends Component {
     </Entity>
     );
   }
+
 }

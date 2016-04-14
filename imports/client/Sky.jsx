@@ -8,6 +8,7 @@ export default class Sky extends Component {
   render() {
     return (
       <Entity
+        id="sky"
         geometry={{
           primitive: "sphere",
           radius: Game.clipRange,
