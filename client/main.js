@@ -5,5 +5,5 @@ import { render } from "react-dom";
 import World from "../imports/client/World.jsx";
 
 Meteor.startup(() => {
-  render( <World/>, document.getElementById("world") );
+  render( <World/>, document.getElementById("aframe") );
 });
