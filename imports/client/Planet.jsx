@@ -4,11 +4,14 @@ import {Animation, Entity, Scene} from "aframe-react";
 
 import Game from "../Game";
 
+import Locator from "./Locator";
+
 export default class Planet extends Component {
 
   render() {
     return (
       <Entity
+        id="planet"
         geometry={{
           primitive: "sphere",
           radius: Game.worldRadius,
@@ -19,12 +22,46 @@ export default class Planet extends Component {
           color: "rgb(161,193,110)",
           roughness: 0.8,
         }}
-        position="0 0 0"
+        rotation={[
+          Game.cameraPositionAngle,
+          0,
+          0,
+        ]}
       >
 
-      {/*<Animation attribute="rotation" dur="5000" repeat="indefinite" to="0 360 360"/>*/}
+        <Locator>
+          <Entity
+            class="test"
+            geometry={{
+              primitive: "box",
+              depth: 1,
+              height: 0.01,
+              width: 1,
+            }}
+            material={{
+              color: "#00ff00",
+            }}
+          />
+        </Locator>
 
-    </Entity>
+        <Locator
+          loc={[1,1,0]}
+        >
+          <Entity
+            class="test"
+            geometry={{
+              primitive: "box",
+              depth: 1,
+              height: 0.01,
+              width: 1,
+            }}
+            material={{
+              color: "#ffff00",
+            }}
+          />
+        </Locator>
+
+      </Entity>
     );
   }
 
