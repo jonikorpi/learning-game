@@ -11,6 +11,7 @@ import StarLight from "./StarLight";
 import Sky from "./Sky";
 
 import Planet from "./Planet";
+import Player from "./Player";
 import Orbit from "./Orbit";
 
 export default class World extends Component {
@@ -33,8 +34,8 @@ export default class World extends Component {
     return [0, 10];
   }
 
-  getCharacterLocation() {
-    return [2, 8];
+  getPlayerLocation() {
+    return [2, 1];
   }
 
   render() {
@@ -58,7 +59,12 @@ export default class World extends Component {
         <StarLight/>
         <Sky color="rgb(187,235,252)"/>
 
-        <Planet/>
+        <Planet
+          playerLoc={this.getPlayerLocation()}
+        />
+
+        <Player/>
+
         <Orbit/>
 
       </Scene>

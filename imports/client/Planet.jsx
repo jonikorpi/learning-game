@@ -8,6 +8,15 @@ import Locator from "./Locator";
 
 export default class Planet extends Component {
 
+  getRotation() {
+    playerLoc = this.props.playerLoc;
+    return [
+      (playerLoc[0] * 180) / (Math.PI * Game.worldRadius) + Game.cameraPositionAngle - Game.cameraPositionAngleOffset,
+      this.props.spin || 0,
+      (playerLoc[1] * 180) / (Math.PI * Game.worldRadius),
+    ];
+  }
+
   render() {
     return (
       <Entity
@@ -22,11 +31,7 @@ export default class Planet extends Component {
           color: "rgb(161,193,110)",
           roughness: 0.8,
         }}
-        rotation={[
-          Game.cameraPositionAngle,
-          0,
-          0,
-        ]}
+        rotation={this.getRotation()}
       >
 
         <Locator>
