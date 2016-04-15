@@ -66,6 +66,19 @@ export default class Planet extends Component {
           />
         </Locator>
 
+        <Animation
+          attribute="rotation"
+          dur={1000}
+          repeat="indefinite"
+          direction="alternate"
+          easing="ease"
+          to={[
+            this.getRotation()[0] + _.random(-3, 3),
+            this.getRotation()[1],
+            this.getRotation()[2] + _.random(-3, 3),
+          ]}
+        />
+
       </Entity>
     );
   }

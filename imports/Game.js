@@ -3,14 +3,14 @@
 
 Game = {};
 
-Game.cameraAltitude = 4;
+Game.cameraAltitude = 5;
 Game.worldRadius = 40;
 Game.cameraPositionAngle = 60;
 Game.cameraPositionAngleOffset = 5;
 Game.clipRange = 10 * Game.worldRadius;
 
-Game.orbitSpeed = 20 * 10000;
-Game.orbitAltitude = 0.1;
+Game.orbitSpeed = 120 * 10000;
+Game.orbitAltitude = 3;
 
 //
 // Functions

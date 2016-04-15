@@ -10,8 +10,21 @@ export default class Surface extends Component {
 
   render() {
     return (
-      <Entity id="orbit">
+      <Entity
+        id="orbit"
+        rotation={[
+          Game.cameraPositionAngle - Game.cameraPositionAngleOffset,
+          0,
+          0,
+        ]}
+      >
 
+        <Cloud/>
+        <Cloud/>
+        <Cloud/>
+        <Cloud/>
+        <Cloud/>
+        <Cloud/>
         <Cloud/>
 
         <Animation

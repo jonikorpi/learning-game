@@ -12,19 +12,18 @@ export default class Cloud extends Component {
     return (
       <Locator
         altitude={Game.orbitAltitude}
-        rotation={[
-          _.random(0, 360),
-          _.random(0, 360),
-          _.random(0, 360),
+        loc={[
+          _.random(-10, 10),
+          _.random(-10, 10),
         ]}
       >
         <Entity
           class="cloud"
           geometry={{
             primitive: "box",
-            depth: _.random(0.5, 1.5),
-            height: _.random(0.1, 0.2),
-            width: _.random(0.5, 1.5),
+            depth: _.random(2, 5),
+            height: _.random(0.3, 0.5),
+            width: _.random(2, 5),
           }}
           material={{
             color: "#ffffff",
