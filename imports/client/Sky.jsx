@@ -15,9 +15,9 @@ export default class Sky extends Component {
         }}
         material={{
           color: this.props.color || "#fff",
-          side: "double",
           shader: "flat",
         }}
+        scale={[1, 1, -1]}
       />
     );
   }
