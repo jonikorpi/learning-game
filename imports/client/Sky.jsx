@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
-import Game from "../Game";
+import Variables from "../Variables";
 
 export default class Sky extends Component {
   render() {
@@ -11,7 +11,7 @@ export default class Sky extends Component {
         id="sky"
         geometry={{
           primitive: "sphere",
-          radius: Game.clipRange,
+          radius: Variables.clipRange,
         }}
         material={{
           color: this.props.color || "#fff",

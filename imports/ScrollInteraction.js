@@ -5,7 +5,7 @@
 // // const minPosition = 0;
 // // const maxPosition = 120;
 // //
-// // Game.setPosition = function() {
+// // Variables.setPosition = function() {
 // //   var newPosition;
 // //   newPosition = positionMultiplier / browser.width();
 // //   if (newPosition < minPosition) {
@@ -16,7 +16,7 @@
 // //   return Session.set("cameraPosition", newPosition);
 // // };
 //
-// Game.moveCamera = function() {
+// Variables.moveCamera = function() {
 //   // TODO: improve(performance)
 //   let scroller = $("#scroller");
 //   let scrollTop = browser.scrollTop();
@@ -37,14 +37,14 @@
 // Template.viewport.onCreated(function() {
 //   Session.setDefault("cameraRotation", 0);
 //   // Session.setDefault("cameraPosition", defaultPosition);
-//   // Game.setPosition();
+//   // Variables.setPosition();
 //
 //   browser.on("scroll", function(event) {
-//     requestAnimationFrame(Game.moveCamera);
+//     requestAnimationFrame(Variables.moveCamera);
 //   });
 //
 //   // browser.on("resize", function(event) {
-//   //   requestAnimationFrame(Game.setPosition);
+//   //   requestAnimationFrame(Variables.setPosition);
 //   // });
 // });
 //

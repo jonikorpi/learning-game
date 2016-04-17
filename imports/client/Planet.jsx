@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
-import Game from "../Game";
+import Variables from "../Variables";
 
 import Locator from "./Locator";
 
@@ -11,9 +11,9 @@ export default class Planet extends Component {
   getRotation() {
     playerLoc = this.props.playerLoc;
     return [
-      (playerLoc[0] * 180) / (Math.PI * Game.worldRadius),
+      (playerLoc[0] * 180) / (Math.PI * Variables.worldRadius),
       this.props.spin || 0,
-      (playerLoc[1] * 180) / (Math.PI * Game.worldRadius),
+      (playerLoc[1] * 180) / (Math.PI * Variables.worldRadius),
     ];
   }
 
@@ -23,9 +23,9 @@ export default class Planet extends Component {
         id="planet"
         geometry={{
           primitive: "sphere",
-          radius: Game.worldRadius,
-          segmentsWidth: Game.segmentsWidth,
-          segmentsHeight: Game.segmentsHeight,
+          radius: Variables.worldRadius,
+          segmentsWidth: Variables.segmentsWidth,
+          segmentsHeight: Variables.segmentsHeight,
         }}
         material={{
           color: "rgb(161,193,110)",
@@ -71,8 +71,8 @@ export default class Planet extends Component {
             primitive: "cylinder",
             openEnded: true,
             thetaLength: 360,
-            radius: Game.worldRadius + 0.05,
-            segmentsRadial: Game.segmentsHeight,
+            radius: Variables.worldRadius + 0.05,
+            segmentsRadial: Variables.segmentsHeight,
             height: 1,
           }}
           material={{
@@ -92,8 +92,8 @@ export default class Planet extends Component {
             primitive: "cylinder",
             openEnded: true,
             thetaLength: 360,
-            radius: Game.worldRadius + 0.05,
-            segmentsRadial: Game.segmentsWidth,
+            radius: Variables.worldRadius + 0.05,
+            segmentsRadial: Variables.segmentsWidth,
             height: 1,
           }}
           material={{
@@ -108,7 +108,7 @@ export default class Planet extends Component {
           ]}
         />
 
-        <Animation
+        {/*<Animation
           attribute="rotation"
           dur={1000}
           repeat="indefinite"
@@ -119,7 +119,7 @@ export default class Planet extends Component {
             this.getRotation()[1],
             this.getRotation()[2] + _.random(-3, 3),
           ]}
-        />
+        />*/}
 
       </Entity>
     );

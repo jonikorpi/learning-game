@@ -1,35 +1,36 @@
 //
 // Variables
 
-Game = {};
+Variables = {};
+export default Variables;
 
-Game.worldRadius = 62;
-Game.segmentsWidth = 128;
-Game.segmentsHeight = Game.segmentsWidth;
+Variables.worldRadius = 62;
+Variables.segmentsWidth = 128;
+Variables.segmentsHeight = Variables.segmentsWidth;
 
-Game.cameraAltitude = 10;
-Game.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI);
-Game.cameraPositionAngleOffset = 0;
-Game.clipRange = 10 * Game.worldRadius;
+Variables.cameraAltitude = 10;
+Variables.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI); // https://en.wikipedia.org/wiki/Pythagorean_triple#Examples
+Variables.cameraPositionAngleOffset = 0;
+Variables.clipRange = 10 * Variables.worldRadius;
 
-Game.orbitSpeed = 120 * 10000;
-Game.orbitAltitude = 2;
+Variables.orbitSpeed = 120 * 10000;
+Variables.orbitAltitude = 2;
 
 //
 // Functions
 
-Game.sinToDegrees = function(sin) {
+Variables.sinToDegrees = function(sin) {
   return Math.asin(sin) * 180 / Math.PI;
 };
 
-Game.hypotenuse = function(a, b) {
+Variables.hypotenuse = function(a, b) {
   return Math.sqrt(a * a + b * b);
 };
 
-Game.rightAngle = function(a, b) {
-  const c = Game.hypotenuse(a, b);
+Variables.rightAngle = function(a, b) {
+  const c = Variables.hypotenuse(a, b);
   const sin = b / c;
-  let angle = Game.sinToDegrees(sin);
+  let angle = Variables.sinToDegrees(sin);
 
   if (a < 0 && b < 0) {
     angle = 180 - angle;
@@ -40,7 +41,7 @@ Game.rightAngle = function(a, b) {
   return angle;
 };
 
-Game.romanize = function(num) {
+Variables.romanize = function(num) {
   var digits, i, key, roman;
   if (!+num) {
     return false;
@@ -54,8 +55,3 @@ Game.romanize = function(num) {
   }
   return Array(+digits.join('') + 1).join('M') + roman;
 };
-
-//
-// Export
-
-export default Game;

@@ -1,10 +1,10 @@
-// Game.skyDistance = Game.tileDistance * 1.5;
-// Game.clippingDistance = Game.tileDistance * 2;
+// Variables.skyDistance = Variables.tileDistance * 1.5;
+// Variables.clippingDistance = Variables.tileDistance * 2;
 //
 // Template.viewport.helpers({
 //   cameraAttributes: function() {
 //     return {
-//       camera: "far: " + Game.clippingDistance + ";",
+//       camera: "far: " + Variables.clippingDistance + ";",
 //       "look-controls": "true",
 //       "wasd-controls": "true"
 //     };
@@ -14,7 +14,7 @@
 // Template.sky.helpers({
 //   skyAttributes: function() {
 //     return {
-//       radius: Game.skyDistance,
+//       radius: Variables.skyDistance,
 //       src: "/starfield.png"
 //     };
 //   }

@@ -2,8 +2,8 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import { render } from "react-dom";
 
-import World from "../imports/client/World.jsx";
+import Game from "../imports/client/Game.jsx";
 
 Meteor.startup(() => {
-  render( <World/>, document.getElementById("aframe") );
+  render( <Game/>, document.getElementById("game") );
 });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
-import Game from "../Game";
+import Variables from "../Variables";
 
 import Locator from "./Locator";
 
@@ -14,7 +14,7 @@ export default class Cloud extends Component {
         loc={[
           _.random(-10, 10),
           _.random(-10, 10),
-          Game.orbitAltitude,
+          Variables.orbitAltitude,
         ]}
       >
         <Entity

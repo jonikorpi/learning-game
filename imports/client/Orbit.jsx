@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
-import Game from "../Game";
+import Variables from "../Variables";
 
 import Cloud from "./Cloud";
 
@@ -24,7 +24,7 @@ export default class Surface extends Component {
 
         <Animation
           attribute="rotation"
-          dur={Game.orbitSpeed}
+          dur={Variables.orbitSpeed}
           repeat="indefinite"
           to="0 360 360"
           easing="linear"

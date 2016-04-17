@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
-import Game from "../Game";
+import Variables from "../Variables";
 
 export default class Locator extends Component {
 
@@ -12,9 +12,9 @@ export default class Locator extends Component {
 
     if (loc) {
       return [
-        (loc[0] * 180) / (Math.PI * Game.worldRadius),
+        (loc[0] * 180) / (Math.PI * Variables.worldRadius),
         facingTowards,
-        (loc[1] * 180) / (Math.PI * Game.worldRadius),
+        (loc[1] * 180) / (Math.PI * Variables.worldRadius),
       ];
     }
     else {
@@ -33,7 +33,7 @@ export default class Locator extends Component {
       altitude = this.props.altitude || 0;
     }
 
-    return Game.worldRadius + altitude;
+    return Variables.worldRadius + altitude;
   }
 
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
-import Game from "../Game";
+import Variables from "../Variables";
 
 import Locator from "./Locator";
 import Camera from "./Camera";
@@ -29,7 +29,7 @@ export default class Player extends Component {
 
           <Camera
             id="camera"
-            far={Game.clipRange * 2}
+            far={Variables.clipRange * 2}
           />
 
         </Entity>

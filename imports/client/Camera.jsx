@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
-import Game from "../Game";
+import Variables from "../Variables";
 
 import Locator from "./Locator";
 
 export default class Camera extends Component {
 
   calculateCameraAngle() {
-    return 90 - Game.cameraPositionAngle;
+    return 90 - Variables.cameraPositionAngle;
   }
 
   render() {
@@ -25,7 +25,7 @@ export default class Camera extends Component {
         <Entity
           position={[
             0,
-            Game.cameraAltitude,
+            Variables.cameraAltitude,
             0,
           ]}
           rotation={[

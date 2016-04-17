@@ -1,22 +1,22 @@
-// Game.tileSize = 1;
+// Variables.tileSize = 1;
 //
-// Game.rotationOffset = (Math.PI * 0.5);
-// Game.tileHeightModifier = 3;
-// Game.segmentHeightModifier = 1.236;
+// Variables.rotationOffset = (Math.PI * 0.5);
+// Variables.tileHeightModifier = 3;
+// Variables.segmentHeightModifier = 1.236;
 //
-// Game.tileDistance = (Game.tilesPerColumn * Game.tileSize) / (2 * Math.PI);
-// Game.tileCount = Game.tilesPerRow * Game.tilesPerColumn;
+// Variables.tileDistance = (Variables.tilesPerColumn * Variables.tileSize) / (2 * Math.PI);
+// Variables.tileCount = Variables.tilesPerRow * Variables.tilesPerColumn;
 //
-// Game.waveDuration = 414;
+// Variables.waveDuration = 414;
 //
-// Template.game.helpers({
+// Template.Variables.helpers({
 //   tiles: function() {
 //     let column = 0;
 //     let row = 0;
 //     let tiles = [];
 //
-//     while (row < Game.tilesPerColumn) {
-//       while (column < Game.tilesPerRow) {
+//     while (row < Variables.tilesPerColumn) {
+//       while (column < Variables.tilesPerRow) {
 //         tiles.push(
 //           {
 //             loc: [column, row],
@@ -38,7 +38,7 @@
 //     let segment = 0
 //     let segments = [];
 //
-//     while (segment < Game.segments) {
+//     while (segment < Variables.segments) {
 //       segments.push(
 //         {
 //           loc: segment
@@ -57,9 +57,9 @@
 //     let color = "white";
 //     let metalness = 0;
 //     let roughness = 0.146;
-//     let height = Game.tileSize * Game.tileHeightModifier;
-//     let yTranslate = Game.tileSize * Game.tileHeightModifier * 0.5;
-//     let depth = Game.tileSize;
+//     let height = Variables.tileSize * Variables.tileHeightModifier;
+//     let yTranslate = Variables.tileSize * Variables.tileHeightModifier * 0.5;
+//     let depth = Variables.tileSize;
 //
 //     switch (this.type) {
 //       case 0:
@@ -81,13 +81,13 @@
 //         break;
 //     }
 //
-//     const rad = this.loc[1] * (2 * Math.PI) / Game.tilesPerColumn - Game.rotationOffset;
+//     const rad = this.loc[1] * (2 * Math.PI) / Variables.tilesPerColumn - Variables.rotationOffset;
 //
-//     const x = (this.loc[0] * Game.tileSize) + (Game.tilesPerRow * Game.tileSize * -0.5) + (Game.tileSize * 0.5);
-//     const y = Game.tileDistance * Math.cos(rad);
-//     const z = Game.tileDistance * Math.sin(rad);
+//     const x = (this.loc[0] * Variables.tileSize) + (Variables.tilesPerRow * Variables.tileSize * -0.5) + (Variables.tileSize * 0.5);
+//     const y = Variables.tileDistance * Math.cos(rad);
+//     const z = Variables.tileDistance * Math.sin(rad);
 //
-//     const angle = Game.rightAngle(z, y) * -1 + 90;
+//     const angle = Variables.rightAngle(z, y) * -1 + 90;
 //
 //     const position = `${x} ${y} ${z}`;
 //     const translate = `0 ${yTranslate} 0`;
@@ -100,7 +100,7 @@
 //         primitive : box;
 //         translate : ${translate};
 //         height    : ${height};
-//         width     : ${Game.tileSize};
+//         width     : ${Variables.tileSize};
 //         depth     : ${depth};
 //       `,
 //       material: `
@@ -114,9 +114,9 @@
 //   animationAttributes: function() {
 //     return {
 //       attribute: "geometry.translate.z",
-//       to: Game.tileSize,
-//       begin: ((this.loc[1] + 1) * Game.waveDuration + (this.loc[0] + 1) * Game.waveDuration / 50),
-//       dur: Game.waveDuration,
+//       to: Variables.tileSize,
+//       begin: ((this.loc[1] + 1) * Variables.waveDuration + (this.loc[0] + 1) * Variables.waveDuration / 50),
+//       dur: Variables.waveDuration,
 //       direction: "alternate",
 //       repeat: "indefinite",
 //       easing: "ease-sine",
@@ -129,18 +129,18 @@
 //     let color = "white";
 //     let metalness = 0.236;
 //     let roughness = 0.618;
-//     let yTranslate = Game.tileSize * Game.tileHeightModifier * Game.segmentHeightModifier * 0.5 * 0.618;
+//     let yTranslate = Variables.tileSize * Variables.tileHeightModifier * Variables.segmentHeightModifier * 0.5 * 0.618;
 //
-//     const rad = this.loc * (2 * Math.PI) / Game.segments - Game.rotationOffset;
+//     const rad = this.loc * (2 * Math.PI) / Variables.segments - Variables.rotationOffset;
 //
 //     const x = 0;
-//     const y = Game.tileDistance * Math.cos(rad);
-//     const z = Game.tileDistance * Math.sin(rad);
+//     const y = Variables.tileDistance * Math.cos(rad);
+//     const z = Variables.tileDistance * Math.sin(rad);
 //
-//     const angle = Game.rightAngle(z, y) * -1 + 90;
+//     const angle = Variables.rightAngle(z, y) * -1 + 90;
 //
 //     const position = `${x} ${y} ${z}`;
-//     const translate = `0 ${yTranslate} ${Game.tileSize * 0.5}`;
+//     const translate = `0 ${yTranslate} ${Variables.tileSize * 0.5}`;
 //     const rotation = `${angle} 0 0`;
 //
 //     if (this.loc == 0)
@@ -152,9 +152,9 @@
 //       geometry: `
 //         primitive : box;
 //         translate : ${translate};
-//         height    : ${Game.tileSize * Game.tileHeightModifier * Game.segmentHeightModifier};
-//         width     : ${Game.tileSize * Game.tilesPerRow};
-//         depth     : ${Game.tileSize / 15};
+//         height    : ${Variables.tileSize * Variables.tileHeightModifier * Variables.segmentHeightModifier};
+//         width     : ${Variables.tileSize * Variables.tilesPerRow};
+//         depth     : ${Variables.tileSize / 15};
 //       `,
 //       material: `
 //         metalness : ${metalness};
