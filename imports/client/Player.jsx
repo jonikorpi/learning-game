@@ -13,6 +13,11 @@ export default class Player extends Component {
     return (
       <Locator>
 
+        <Camera
+          id="camera"
+          far={Variables.clipRange * 2}
+        />
+
         <Entity
           id="player"
           class="player"
@@ -27,9 +32,14 @@ export default class Player extends Component {
           }}
         >
 
-          <Camera
-            id="camera"
-            far={Variables.clipRange * 2}
+          <Animation
+            begin="click"
+            easing="ease-in-out"
+            attribute="scale"
+            fill="forwards"
+            to="2 2 2"
+            from="1 1 1"
+            dur={Variables.shortTime(3)}
           />
 
         </Entity>
