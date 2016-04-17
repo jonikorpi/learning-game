@@ -11,7 +11,7 @@ export default class Planet extends Component {
   getRotation() {
     playerLoc = this.props.playerLoc;
     return [
-      (playerLoc[0] * 180) / (Math.PI * Game.worldRadius) + Game.cameraPositionAngle - Game.cameraPositionAngleOffset,
+      (playerLoc[0] * 180) / (Math.PI * Game.worldRadius),
       this.props.spin || 0,
       (playerLoc[1] * 180) / (Math.PI * Game.worldRadius),
     ];
@@ -24,8 +24,8 @@ export default class Planet extends Component {
         geometry={{
           primitive: "sphere",
           radius: Game.worldRadius,
-          segmentsWidth: 64,
-          segmentsHeight: 128,
+          segmentsWidth: Game.segmentsWidth,
+          segmentsHeight: Game.segmentsHeight,
         }}
         material={{
           color: "rgb(161,193,110)",
@@ -65,6 +65,48 @@ export default class Planet extends Component {
             }}
           />
         </Locator>
+
+        <Entity
+          geometry={{
+            primitive: "cylinder",
+            openEnded: true,
+            thetaLength: 360,
+            radius: Game.worldRadius + 0.05,
+            segmentsRadial: Game.segmentsHeight,
+            height: 1,
+          }}
+          material={{
+            color: "rgb(213,211,228)",
+            roughness: 0.854,
+            metalness: 0.382,
+          }}
+          rotation={[
+            95,
+            -95,
+            0
+          ]}
+        />
+
+        <Entity
+          geometry={{
+            primitive: "cylinder",
+            openEnded: true,
+            thetaLength: 360,
+            radius: Game.worldRadius + 0.05,
+            segmentsRadial: Game.segmentsWidth,
+            height: 1,
+          }}
+          material={{
+            color: "rgb(213,211,228)",
+            roughness: 0.854,
+            metalness: 0.382,
+          }}
+          rotation={[
+            85,
+            0,
+            0
+          ]}
+        />
 
         <Animation
           attribute="rotation"

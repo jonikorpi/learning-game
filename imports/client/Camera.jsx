@@ -8,23 +8,33 @@ import Locator from "./Locator";
 
 export default class Camera extends Component {
 
+  calculateCameraAngle() {
+    return 90 - Game.cameraPositionAngle;
+  }
+
   render() {
     return (
-      <Locator
-        altitude={Game.cameraAltitude}
+      <Entity
         rotation={[
-          Game.cameraPositionAngle,
+          this.calculateCameraAngle(),
           0,
           0,
         ]}
       >
+
         <Entity
+          position={[
+            0,
+            Game.cameraAltitude,
+            0,
+          ]}
           rotation={[
-            -Game.cameraPositionAngle,
+            -1 * this.calculateCameraAngle() - (90 - this.calculateCameraAngle()),
             0,
             0,
           ]}
         >
+
           <Entity
             camera={{
               far: this.props.far || 10000,
@@ -32,10 +42,12 @@ export default class Camera extends Component {
             }}
             look-controls
             wasd-controls
-          />
+          >
+          </Entity>
+
         </Entity>
 
-      </Locator>
+      </Entity>
     );
   }
 

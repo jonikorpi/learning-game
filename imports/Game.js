@@ -3,14 +3,17 @@
 
 Game = {};
 
-Game.cameraAltitude = 5;
-Game.worldRadius = 40;
-Game.cameraPositionAngle = 60;
-Game.cameraPositionAngleOffset = 5;
+Game.worldRadius = 62;
+Game.segmentsWidth = 128;
+Game.segmentsHeight = Game.segmentsWidth;
+
+Game.cameraAltitude = 10;
+Game.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI);
+Game.cameraPositionAngleOffset = 0;
 Game.clipRange = 10 * Game.worldRadius;
 
 Game.orbitSpeed = 120 * 10000;
-Game.orbitAltitude = 3;
+Game.orbitAltitude = 2;
 
 //
 // Functions

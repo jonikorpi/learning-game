@@ -11,10 +11,10 @@ export default class Cloud extends Component {
   render() {
     return (
       <Locator
-        altitude={Game.orbitAltitude}
         loc={[
           _.random(-10, 10),
           _.random(-10, 10),
+          Game.orbitAltitude,
         ]}
       >
         <Entity
@@ -22,7 +22,7 @@ export default class Cloud extends Component {
           geometry={{
             primitive: "box",
             depth: _.random(2, 5),
-            height: _.random(0.3, 0.5),
+            height: _.random(0.1, 0.2),
             width: _.random(2, 5),
           }}
           material={{

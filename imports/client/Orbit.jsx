@@ -12,11 +12,6 @@ export default class Surface extends Component {
     return (
       <Entity
         id="orbit"
-        rotation={[
-          Game.cameraPositionAngle - Game.cameraPositionAngleOffset,
-          0,
-          0,
-        ]}
       >
 
         <Cloud/>

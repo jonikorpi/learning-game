@@ -4,8 +4,6 @@ import {Animation, Entity, Scene} from "aframe-react";
 
 import Game from "../Game";
 
-import Camera from "./Camera";
-
 import AmbientLight from "./AmbientLight";
 import StarLight from "./StarLight";
 import Sky from "./Sky";
@@ -50,10 +48,7 @@ export default class World extends Component {
         }}
       >
 
-        <Camera
-          id="camera"
-          far={Game.clipRange * 2}
-        />
+        <Player/>
 
         <AmbientLight/>
         <StarLight/>
@@ -62,8 +57,6 @@ export default class World extends Component {
         <Planet
           playerLoc={this.getPlayerLocation()}
         />
-
-        <Player/>
 
         <Orbit/>
 
