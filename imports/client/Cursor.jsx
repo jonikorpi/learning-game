@@ -20,7 +20,7 @@ export default class Cursor extends Component {
         }}
         material={{
           color: "white",
-          shader: "flat"
+          shader: "flat",
         }}
         position={[
           0,
