@@ -5,6 +5,7 @@ import {Animation, Entity, Scene} from "aframe-react";
 import Variables from "../Variables";
 
 import Locator from "./Locator";
+import Cursor from "./Cursor";
 
 export default class Camera extends Component {
 
@@ -43,6 +44,9 @@ export default class Camera extends Component {
             look-controls
             wasd-controls
           >
+
+            <Cursor/>
+
           </Entity>
 
         </Entity>

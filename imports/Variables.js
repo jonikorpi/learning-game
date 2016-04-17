@@ -8,13 +8,27 @@ Variables.worldRadius = 62;
 Variables.segmentsWidth = 128;
 Variables.segmentsHeight = Variables.segmentsWidth;
 
-Variables.cameraAltitude = 10;
+Variables.cameraAltitude = 10; // 10 is probably max
 Variables.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI); // https://en.wikipedia.org/wiki/Pythagorean_triple#Examples
 Variables.cameraPositionAngleOffset = 0;
 Variables.clipRange = 10 * Variables.worldRadius;
 
 Variables.orbitSpeed = 120 * 10000;
 Variables.orbitAltitude = 2;
+
+Variables.cursorSize = 0.01;
+Variables.cursorThickness = 0.764;
+Variables.cursorShrink = 0.618;
+
+Variables.time = 1000;
+
+Variables.shortTime = function(exponent) {
+  return Variables.time / Math.pow(1.618, exponent);
+}
+
+Variables.longTime = function(exponent) {
+  return Variables.time * Math.pow(1.618, exponent);
+}
 
 //
 // Functions
