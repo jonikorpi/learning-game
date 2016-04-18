@@ -15,7 +15,7 @@ export default class Player extends Component {
 
         <Camera
           id="camera"
-          far={Variables.clipRange * 2}
+          far={Variables.clipRange * 1.5}
         />
 
         <Entity

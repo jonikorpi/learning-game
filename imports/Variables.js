@@ -11,7 +11,7 @@ Variables.segmentsHeight = Variables.segmentsWidth;
 Variables.cameraAltitude = 10; // 10 is probably max
 Variables.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI); // https://en.wikipedia.org/wiki/Pythagorean_triple#Examples
 Variables.cameraPositionAngleOffset = 0;
-Variables.clipRange = 10 * Variables.worldRadius;
+Variables.clipRange = 2 * Variables.worldRadius;
 
 Variables.orbitSpeed = 120 * 10000;
 Variables.orbitAltitude = 2;
