@@ -25,7 +25,7 @@ export default class Cursor extends Component {
         position={[
           0,
           0,
-          -0.5,
+          -Variables.cursorDistance,
         ]}
       >
 
