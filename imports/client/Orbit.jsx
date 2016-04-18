@@ -22,13 +22,13 @@ export default class Surface extends Component {
         <Cloud/>
         <Cloud/>
 
-        <Animation
+        {/*<Animation
           attribute="rotation"
           dur={Variables.orbitSpeed}
           repeat="indefinite"
           to="0 360 360"
           easing="linear"
-        />
+        />*/}
 
       </Entity>
     );
