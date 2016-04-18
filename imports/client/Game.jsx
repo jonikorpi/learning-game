@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
-const Combokeys = require("combokeys");
+import Combokeys from "combokeys";
 
 import Variables from "../Variables";
 
