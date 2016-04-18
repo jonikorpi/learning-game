@@ -50,7 +50,6 @@ html {
 
 a {
   color: $strong;
-  text-decoration: none;
 
   &:hover {
     color: mix($emphasizer, $highlight, 23.6%);
@@ -104,4 +103,27 @@ body {
     background-color: black;
     border: $spacing-xs dashed yellow;
   }
+
+  #game & {
+    @extend .enter-fade;
+  }
+}
+
+.enter-fade {
+  animation: enter-fade $main-time $main-easing;
+}
+
+.enter-delayed {
+  animation-delay: $main-time*15;
+  animation-fill-mode: backwards;
+}
+
+@keyframes enter-fade {
+    0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.max-width-narrow {
+  max-width: $line*24;
+  margin: auto;
 }
