@@ -30,7 +30,7 @@ export default class World extends Component {
           canvas: "#canvas"
         }}
         vr-mode-ui={{
-          enabled: false,
+          enabled: true,
         }}
       >
 
