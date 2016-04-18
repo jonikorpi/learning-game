@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
@@ -16,6 +17,7 @@ export default class Player extends Component {
         <Camera
           id="camera"
           far={Variables.clipRange * 1.5}
+          devMode={this.props.devMode}
         />
 
         <Entity

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
@@ -108,7 +109,7 @@ export default class Planet extends Component {
           ]}
         />
 
-        {/*<Animation
+        <Animation
           attribute="rotation"
           dur={1000}
           repeat="indefinite"
@@ -119,7 +120,7 @@ export default class Planet extends Component {
             this.getRotation()[1],
             this.getRotation()[2] + _.random(-3, 3),
           ]}
-        />*/}
+        />
 
       </Entity>
     );

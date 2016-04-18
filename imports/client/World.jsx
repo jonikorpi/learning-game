@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
@@ -16,6 +17,7 @@ export default class World extends Component {
 
   getHomeLocation() {
     return this.props.homeLocation || [0, 0];
+    console.log(this.props);
   }
 
   getPlayerLocation() {
@@ -23,18 +25,19 @@ export default class World extends Component {
   }
 
   render() {
+    console.log("world:");
+    console.log(this.props);
     return (
       <Scene
         id="world"
-        canvas={{
-          canvas: "#canvas"
-        }}
         vr-mode-ui={{
           enabled: true,
         }}
       >
 
-        <Player/>
+        <Player
+          devMode={this.props.devMode}
+        />
 
         <AmbientLight/>
         <StarLight/>

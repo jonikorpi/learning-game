@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
@@ -11,6 +12,18 @@ export default class Camera extends Component {
 
   calculateCameraAngle() {
     return 90 - Variables.cameraPositionAngle;
+  }
+
+  lookControls() {
+    return {
+      enabled: this.props.devMode || false,
+    };
+  }
+
+  wasdControls() {
+    return {
+      enabled: this.props.devMode || false,
+    };
   }
 
   render() {
@@ -41,8 +54,8 @@ export default class Camera extends Component {
               far: this.props.far || 10000,
               near: this.props.near || 0.001,
             }}
-            look-controls
-            wasd-controls
+            look-controls={ this.lookControls() }
+            wasd-controls={ this.wasdControls() }
           >
 
             <Cursor/>

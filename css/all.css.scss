@@ -99,9 +99,9 @@ body {
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
-#world {
-  // display: none;
-}
-
-#game {
+.a-canvas {
+  .dev-mode & {
+    background-color: black;
+    border: $spacing-xs dashed yellow;
+  }
 }
