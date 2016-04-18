@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
+import "aframe-mouse-cursor-component";
 
 import Variables from "../Variables";
 
@@ -12,18 +13,6 @@ export default class Camera extends Component {
 
   calculateCameraAngle() {
     return 90 - Variables.cameraPositionAngle;
-  }
-
-  lookControls() {
-    return {
-      enabled: this.props.devMode || false,
-    };
-  }
-
-  wasdControls() {
-    return {
-      enabled: this.props.devMode || false,
-    };
   }
 
   render() {
@@ -54,11 +43,12 @@ export default class Camera extends Component {
               far: this.props.far || 10000,
               near: this.props.near || 0.001,
             }}
-            look-controls={ this.lookControls() }
-            wasd-controls={ this.wasdControls() }
+            look-controls={{ enabled: this.props.devMode }}
+            wasd-controls={{ enabled: this.props.devMode }}
+            mouse-cursor={ !this.props.devMode }
           >
 
-            <Cursor/>
+            {/*<Cursor/>*/}
 
           </Entity>
 
