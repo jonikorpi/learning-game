@@ -12,8 +12,8 @@ export default class Cloud extends Component {
     return (
       <Locator
         loc={[
-          _.random(-10, 10),
-          _.random(-10, 10),
+          _.random(-3, -15),
+          _.random(-15, 15),
           Variables.orbitAltitude,
         ]}
       >
@@ -21,14 +21,14 @@ export default class Cloud extends Component {
           class="cloud"
           geometry={{
             primitive: "box",
-            depth: _.random(2, 5),
+            depth: _.random(2, 3),
             height: _.random(0.1, 0.2),
-            width: _.random(2, 5),
+            width: _.random(4, 6),
           }}
           material={{
             color: "#ffffff",
-            transparent: true,
-            opacity: 0.5,
+            // transparent: true,
+            // opacity: 0.5,
             shader: "flat",
           }}
         >
