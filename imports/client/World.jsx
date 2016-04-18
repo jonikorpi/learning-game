@@ -25,8 +25,6 @@ export default class World extends Component {
   }
 
   render() {
-    console.log("world:");
-    console.log(this.props);
     return (
       <Scene
         id="world"
