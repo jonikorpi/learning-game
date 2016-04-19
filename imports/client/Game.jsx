@@ -50,8 +50,9 @@ export default class Game extends Component {
   }
 
   bindKeyboardShortcuts() {
+    const that = this;
     let combokeys = new Combokeys(document.documentElement);
-    combokeys.bind("g", function() { this.toggleDevMode(); });
+    combokeys.bind("g", function() { that.toggleDevMode(); });
   }
 
   unbindKeyboardShortcuts() {
