@@ -19,7 +19,7 @@ export default class Locator extends Component {
       ];
     }
     else {
-      return this.props.rotation || [0,0,0];
+      return this.props.rotation || [0,facingTowards,0];
     }
   }
 

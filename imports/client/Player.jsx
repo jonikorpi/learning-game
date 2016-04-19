@@ -10,6 +10,18 @@ import Camera from "./Camera";
 
 export default class Player extends Component {
 
+  onPlayerClick(event) {
+    console.log("player clicked");
+  }
+
+  startPlayerHover(event) {
+    // console.log(event);
+  }
+
+  endPlayerHover(event) {
+    // console.log(event);
+  }
+
   render() {
     return (
       <Locator>
@@ -32,18 +44,11 @@ export default class Player extends Component {
           material={{
             color: "#000000",
           }}
+          onClick={this.onPlayerClick}
+          onMouseEnter={this.startPlayerHover}
+          onMouseLeave={this.endPlayerHover}
+          rotation={[0, this.props.facingTowards, 0]}
         >
-
-          <Animation
-            begin="click"
-            easing="ease-in-out"
-            attribute="scale"
-            fill="forwards"
-            to="2 2 2"
-            from="1 1 1"
-            dur={Variables.shortTime(3)}
-          />
-
         </Entity>
 
       </Locator>

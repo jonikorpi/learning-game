@@ -10,12 +10,20 @@ import Locator from "./Locator";
 
 export default class Cloud extends Component {
 
+  componentDidMount() {
+    this.x = _.random(-3, -15);
+    this.y = _.random(-15, 15);
+    this.depth = _.random(2, 3);
+    this.height = _.random(0.1, 0.2);
+    this.width = _.random(4, 6);
+  }
+
   render() {
     return (
       <Locator
         loc={[
-          _.random(-3, -15),
-          _.random(-15, 15),
+          this.x,
+          this.y,
           Variables.orbitAltitude,
         ]}
       >
@@ -23,9 +31,9 @@ export default class Cloud extends Component {
           class="cloud"
           geometry={{
             primitive: "box",
-            depth: _.random(2, 3),
-            height: _.random(0.1, 0.2),
-            width: _.random(4, 6),
+            depth: this.depth,
+            height: this.height,
+            width: this.width,
           }}
           material={{
             color: "#ffffff",

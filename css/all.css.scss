@@ -98,6 +98,11 @@ body {
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
+#game,
+#react {
+  height: 100%;
+}
+
 .a-canvas {
   .dev-mode & {
     background-color: black;
@@ -106,6 +111,7 @@ body {
 
   #game & {
     @extend .enter-fade;
+    cursor: pointer;
   }
 }
 

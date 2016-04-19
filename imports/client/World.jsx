@@ -35,6 +35,7 @@ export default class World extends Component {
 
         <Player
           devMode={this.props.devMode}
+          facingTowards={this.props.playerFacingTowards}
         />
 
         <AmbientLight/>

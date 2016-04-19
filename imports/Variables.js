@@ -53,7 +53,7 @@ Variables.rightAngle = function(a, b) {
     angle = 180 - angle;
   }
 
-  return angle;
+  return angle + 90;
 };
 
 Variables.romanize = function(num) {
