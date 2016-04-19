@@ -13,9 +13,9 @@ export default class Planet extends Component {
   getRotation() {
     playerLoc = this.props.playerLoc;
     return [
-      (playerLoc[0] * 180) / (Math.PI * Variables.worldRadius),
-      this.props.spin || 0,
       (playerLoc[1] * 180) / (Math.PI * Variables.worldRadius),
+      this.props.spin || 0,
+      (playerLoc[0] * 180) / (Math.PI * Variables.worldRadius),
     ];
   }
 
@@ -110,7 +110,7 @@ export default class Planet extends Component {
           ]}
         />
 
-        <Animation
+        {/*<Animation
           attribute="rotation"
           dur={1000}
           repeat="indefinite"
@@ -121,7 +121,7 @@ export default class Planet extends Component {
             this.getRotation()[1],
             this.getRotation()[2] + _.random(-3, 3),
           ]}
-        />
+        />*/}
 
       </Entity>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Motion, spring} from "react-motion";
 import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
@@ -18,8 +19,9 @@ export default class Game extends Component {
     this.toggleDevMode         = this.toggleDevMode.bind(this);
     this.startMoving           = this.startMoving.bind(this);
     this.stopMoving            = this.stopMoving.bind(this);
+    this.move                  = this.move.bind(this);
     this.startTurning          = this.startTurning.bind(this);
-    this.setMovementDirection  = this.setMovementDirection.bind(this);
+    this.setMovementVectors  = this.setMovementVectors.bind(this);
 
     this.state = {
       devMode: false,
@@ -27,6 +29,7 @@ export default class Game extends Component {
       height: 0,
       moving: false,
       playerLocation: [0, 0],
+      playerSpeed: [0, 0],
       playerFacingTowards: 0,
     };
   }
@@ -77,7 +80,8 @@ export default class Game extends Component {
         moving: true,
       });
       event.persist(); // allows it to be passed on
-      this.setMovementDirection(event);
+      this.setMovementVectors(event);
+      window.requestAnimationFrame(this.move);
     }
   }
 
@@ -90,15 +94,34 @@ export default class Game extends Component {
     }
   }
 
-  startTurning(event) {
+  move(timestamp) {
+    let x, y;
+    const speed = Variables.walkingSpeed;
+    const xSpeed = this.state.playerSpeed[0];
+    const ySpeed = this.state.playerSpeed[1];
+
+    x = this.state.playerLocation[0] + speed * xSpeed;
+    y = this.state.playerLocation[1] + speed * ySpeed;
+
+    this.setState({
+      playerLocation: [x, y],
+    })
+
     if (this.state.moving) {
-      event.persist();
-      this.setMovementDirection(event);
+      window.requestAnimationFrame(this.move);
     }
   }
 
-  setMovementDirection(event) {
+  startTurning(event) {
+    if (this.state.moving) {
+      event.persist();
+      this.setMovementVectors(event);
+    }
+  }
+
+  setMovementVectors(event) {
     let facingTowards = this.state.playerFacingTowards;
+    let xSpeed, ySpeed;
     const width = this.state.width;
     const height = this.state.height;
     const deadZone = 0.09;
@@ -113,6 +136,7 @@ export default class Game extends Component {
 
     this.setState({
       playerFacingTowards: facingTowards,
+      playerSpeed: [Math.sign(deltaX), Math.sign(deltaY)],
     })
   }
 
@@ -134,12 +158,24 @@ export default class Game extends Component {
         ref={(ref) => this.react = ref}
       >
 
-        <World
-          homeLocation={this.props.getHomeLocation}
-          playerLocation={this.state.playerLocation}
-          playerFacingTowards={this.state.playerFacingTowards}
-          devMode={this.state.devMode}
-        />
+        <Motion
+          style={{
+            playerLocationX: spring(this.state.playerLocation[0], Variables.springConfig),
+            playerLocationY: spring(this.state.playerLocation[1], Variables.springConfig),
+          }}
+        >
+          {interpolation =>
+            <World
+              homeLocation={this.props.getHomeLocation}
+              playerLocation={[
+                interpolation.playerLocationX,
+                interpolation.playerLocationY,
+              ]}
+              playerFacingTowards={this.state.playerFacingTowards}
+              devMode={this.state.devMode}
+            />
+          }
+        </Motion>
 
       </div>
     );

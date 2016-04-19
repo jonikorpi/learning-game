@@ -23,6 +23,9 @@ Variables.cursorShrink = 0.618;
 
 Variables.time = 1000;
 
+Variables.springConfig = {stiffness: 300, damping: 30};
+Variables.walkingSpeed = 0.1;
+
 Variables.shortTime = function(exponent) {
   return Variables.time / Math.pow(1.618, exponent);
 }
