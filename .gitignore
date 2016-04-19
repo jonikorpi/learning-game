@@ -2,3 +2,4 @@ server/kadira.js
 
 private/*
 node_modules
+npm-debug.log
