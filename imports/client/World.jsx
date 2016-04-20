@@ -15,6 +15,14 @@ import Orbit from "./Orbit";
 
 export default class World extends Component {
 
+  constructor(props) {
+    super();
+  }
+
+  componentDidMount() {
+
+  }
+
   getHomeLocation() {
     return this.props.homeLocation || [0, 0];
     console.log(this.props);
@@ -36,6 +44,7 @@ export default class World extends Component {
         <Player
           devMode={this.props.devMode}
           facingTowards={this.props.playerFacingTowards}
+          inVR={this.props.inVR}
         />
 
         <AmbientLight/>

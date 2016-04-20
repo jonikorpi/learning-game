@@ -43,9 +43,9 @@ export default class Camera extends Component {
               far: this.props.far || 10000,
               near: this.props.near || 0.001,
             }}
-            look-controls={{ enabled: this.props.devMode }}
+            look-controls={{ enabled: this.props.inVR || this.props.devMode }}
             wasd-controls={{ enabled: this.props.devMode }}
-            mouse-cursor={ !this.props.devMode }
+            mouse-cursor={ !this.props.inVR }
           >
 
             {/*<Cursor/>*/}

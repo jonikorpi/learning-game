@@ -30,6 +30,7 @@ export default class Player extends Component {
           id="camera"
           far={Variables.clipRange * 1.5}
           devMode={this.props.devMode}
+          inVR={this.props.inVR}
         />
 
         <Entity

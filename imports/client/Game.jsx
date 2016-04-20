@@ -21,9 +21,12 @@ export default class Game extends Component {
     this.stopMoving            = this.stopMoving.bind(this);
     this.move                  = this.move.bind(this);
     this.startTurning          = this.startTurning.bind(this);
-    this.setMovementVectors  = this.setMovementVectors.bind(this);
+    this.setMovementVectors    = this.setMovementVectors.bind(this);
+    this.startVR               = this.startVR.bind(this);
+    this.stopVR                = this.stopVR.bind(this);
 
     this.state = {
+      inVR: false,
       devMode: false,
       width: 0,
       height: 0,
@@ -35,14 +38,18 @@ export default class Game extends Component {
   }
 
   componentDidMount() {
-    this.bindKeyboardShortcuts();
+    window.addEventListener("enter-vr", this.startVR);
+    window.addEventListener("exit-vr", this.stopVR);
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
+    this.bindKeyboardShortcuts();
   }
 
   componentWillUnmount() {
     this.unbindKeyboardShortcuts();
     window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("enter-vr", this.startVR);
+    window.removeEventListener("exit-vr", this.stopVR);
   }
 
   handleResize() {
@@ -67,6 +74,18 @@ export default class Game extends Component {
       devMode: !this.state.devMode,
     });
     console.log("Setting devMode to " + this.state.devMode);
+  }
+
+  startVR() {
+    this.setState({
+      inVR: true,
+    });
+  }
+
+  stopVR() {
+    this.setState({
+      inVR: false,
+    });
   }
 
   isMouseOrTouchEvent(event) {
@@ -173,6 +192,7 @@ export default class Game extends Component {
               ]}
               playerFacingTowards={this.state.playerFacingTowards}
               devMode={this.state.devMode}
+              inVR={this.state.inVR}
             />
           }
         </Motion>
