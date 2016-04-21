@@ -4,17 +4,9 @@
 Variables = {};
 export default Variables;
 
-Variables.worldRadius = 62;
-Variables.segmentsWidth = 128;
-Variables.segmentsHeight = Variables.segmentsWidth;
-
 Variables.cameraAltitude = 8; // 10 is probably max
 Variables.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI); // https://en.wikipedia.org/wiki/Pythagorean_triple#Examples
-Variables.cameraPositionAngleOffset = 0;
-Variables.clipRange = 2 * Variables.worldRadius;
-
-Variables.orbitSpeed = 120 * 10000;
-Variables.orbitAltitude = 2;
+Variables.clipRange = 1000;
 
 Variables.cursorDistance = 6;
 Variables.cursorSize = 0.1618;
@@ -24,7 +16,11 @@ Variables.cursorShrink = 0.618;
 Variables.time = 1000;
 
 Variables.springConfig = {stiffness: 300, damping: 30};
-Variables.walkingSpeed = 0.1;
+Variables.walkingSpeed = 1;
+
+Variables.tileSize = 1;
+Variables.tilesPerRow = 13;
+Variables.tilesPerColumn = 13;
 
 Variables.shortTime = function(exponent) {
   return Variables.time / Math.pow(1.618, exponent);

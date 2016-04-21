@@ -9,9 +9,10 @@ import AmbientLight from "./AmbientLight";
 import StarLight from "./StarLight";
 import Sky from "./Sky";
 
-import Planet from "./Planet";
 import Player from "./Player";
-import Orbit from "./Orbit";
+import Camera from "./Camera";
+import Segment from "./Segment";
+import Sea from "./Sea";
 
 export default class World extends Component {
 
@@ -23,13 +24,51 @@ export default class World extends Component {
 
   }
 
-  getHomeLocation() {
-    return this.props.homeLocation || [0, 0];
-    console.log(this.props);
-  }
+  getSegments() {
+    const segments = [
+      {
+        loc: [0, 0],
+        tiles: [
+          [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+          [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,],
+        ],
+      },
+      {
+        loc: [0, 1],
+        tiles: [
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
+        ],
+      },
+    ];
 
-  getPlayerLocation() {
-    return this.props.playerLocation || [0, 0];
+    return segments.map(
+      function(data, i) {
+        return <Segment data={data} key={i}/>;
+      }
+    );
   }
 
   render() {
@@ -45,17 +84,31 @@ export default class World extends Component {
           devMode={this.props.devMode}
           facingTowards={this.props.playerFacingTowards}
           inVR={this.props.inVR}
+          position={this.props.playerLocation || [0, 0, 0]}
         />
+
+        {this.getSegments()}
 
         <AmbientLight/>
         <StarLight/>
         <Sky color="rgb(187,235,252)"/>
 
-        <Planet
-          playerLoc={this.getPlayerLocation()}
-        />
-
-        <Orbit/>
+        <Entity
+          id="center-on-camera"
+          position={[
+            Variables.tilesPerRow * 0.5,
+            0,
+            Variables.tilesPerColumn * 0.666,
+          ]}
+        >
+          <Camera
+            id="camera"
+            far={Variables.clipRange * 1.5}
+            devMode={this.props.devMode}
+            inVR={this.props.inVR}
+          />
+          <Sea color="rgb(187,235,252)"/>
+        </Entity>
 
       </Scene>
     );

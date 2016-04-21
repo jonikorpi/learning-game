@@ -10,7 +10,7 @@ export default class AmbientLight extends Component {
         id="ambientLight"
         light={{
           type: "ambient",
-          color: "hsl(0, 0%, 9%)",
+          color: "hsl(0, 0%, 10%)",
         }}
       />
     );

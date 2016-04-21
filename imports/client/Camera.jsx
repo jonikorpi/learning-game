@@ -6,7 +6,6 @@ import "aframe-mouse-cursor-component";
 
 import Variables from "../Variables";
 
-import Locator from "./Locator";
 import Cursor from "./Cursor";
 
 export default class Camera extends Component {
@@ -18,6 +17,7 @@ export default class Camera extends Component {
   render() {
     return (
       <Entity
+        id="camera"
         rotation={[
           this.calculateCameraAngle(),
           0,

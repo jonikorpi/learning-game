@@ -1,12 +1,10 @@
 import React, { Component } from "react";
+import {Motion, spring} from "react-motion";
 import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
 
 import Variables from "../Variables";
-
-import Locator from "./Locator";
-import Camera from "./Camera";
 
 export default class Player extends Component {
 
@@ -24,35 +22,39 @@ export default class Player extends Component {
 
   render() {
     return (
-      <Locator>
-
-        <Camera
-          id="camera"
-          far={Variables.clipRange * 1.5}
-          devMode={this.props.devMode}
-          inVR={this.props.inVR}
-        />
-
-        <Entity
-          id="player"
-          class="player"
-          geometry={{
-            primitive: "box",
-            depth: 0.236,
-            height: 1.618,
-            width: 0.414,
-          }}
-          material={{
-            color: "#000000",
-          }}
-          onClick={this.onPlayerClick}
-          onMouseEnter={this.startPlayerHover}
-          onMouseLeave={this.endPlayerHover}
-          rotation={[0, this.props.facingTowards, 0]}
-        >
-        </Entity>
-
-      </Locator>
+      <Motion
+        style={{
+          playerLocationX: spring(this.props.position[0], Variables.springConfig),
+          playerLocationY: spring(this.props.position[1], Variables.springConfig),
+          playerLocationZ: spring(this.props.position[2], Variables.springConfig),
+        }}
+      >
+        {interpolation =>
+          <Entity
+            id="player"
+            class="player"
+            geometry={{
+              primitive: "box",
+              width: 0.414,
+              height: 1.618,
+              depth: 0.236,
+            }}
+            material={{
+              color: "#fff",
+            }}
+            onClick={this.onPlayerClick}
+            onMouseEnter={this.startPlayerHover}
+            onMouseLeave={this.endPlayerHover}
+            rotation={[0, this.props.facingTowards, 0]}
+            position={[
+              interpolation.playerLocationX + 0.414*0.5,
+              interpolation.playerLocationY + 1.618*0.5,
+              interpolation.playerLocationZ + 0.236*0.5,
+            ]}
+          >
+          </Entity>
+        }
+      </Motion>
     );
   }
 

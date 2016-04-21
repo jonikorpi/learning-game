@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Motion, spring} from "react-motion";
 import classNames from "classnames";
 import Aframe from "aframe";
 import {Animation, Entity, Scene} from "aframe-react";
@@ -17,11 +16,11 @@ export default class Game extends Component {
     this.handleResize          = this.handleResize.bind(this);
     this.bindKeyboardShortcuts = this.bindKeyboardShortcuts.bind(this);
     this.toggleDevMode         = this.toggleDevMode.bind(this);
-    this.startMoving           = this.startMoving.bind(this);
-    this.stopMoving            = this.stopMoving.bind(this);
+    // this.startMoving           = this.startMoving.bind(this);
+    // this.stopMoving            = this.stopMoving.bind(this);
     this.move                  = this.move.bind(this);
-    this.startTurning          = this.startTurning.bind(this);
-    this.setMovementVectors    = this.setMovementVectors.bind(this);
+    // this.startTurning          = this.startTurning.bind(this);
+    // this.setMovementVectors    = this.setMovementVectors.bind(this);
     this.startVR               = this.startVR.bind(this);
     this.stopVR                = this.stopVR.bind(this);
 
@@ -31,8 +30,8 @@ export default class Game extends Component {
       width: 0,
       height: 0,
       moving: false,
-      playerLocation: [0, 0],
-      playerSpeed: [0, 0],
+      playerLocation: [0, 0, 0],
+      playerSpeed: [0, 0, 0],
       playerFacingTowards: 0,
     };
   }
@@ -62,7 +61,12 @@ export default class Game extends Component {
   bindKeyboardShortcuts() {
     const that = this;
     let combokeys = new Combokeys(document.documentElement);
+
     combokeys.bind("g", function() { that.toggleDevMode(); });
+    combokeys.bind(["a", "left"], function() { that.move("left"); });
+    combokeys.bind(["d", "right"], function() { that.move("right"); });
+    combokeys.bind(["w", "up"], function() { that.move("up"); });
+    combokeys.bind(["s", "down"], function() { that.move("down"); });
   }
 
   unbindKeyboardShortcuts() {
@@ -74,6 +78,31 @@ export default class Game extends Component {
       devMode: !this.state.devMode,
     });
     console.log("Setting devMode to " + this.state.devMode);
+  }
+
+  move(direction) {
+    let x = this.state.playerLocation[0];
+    let y = this.state.playerLocation[1];
+    let z = this.state.playerLocation[2];
+
+    switch (direction) {
+      case "left":
+        x = x - 1;
+        break;
+      case "right":
+        x = x + 1;
+        break;
+      case "up":
+        z = z - 1;
+        break;
+      case "down":
+        z = z + 1;
+        break;
+    }
+
+    this.setState({
+      playerLocation: [x, y, z],
+    })
   }
 
   startVR() {
@@ -88,72 +117,74 @@ export default class Game extends Component {
     });
   }
 
-  startMoving(event) {
-    if (event.nativeEvent instanceof MouseEvent) {
-      console.log("starting moving");
-      this.setState({
-        moving: true,
-      });
-      event.persist(); // allows it to be passed on
-      this.setMovementVectors(event);
-      window.requestAnimationFrame(this.move);
-    }
-  }
-
-  stopMoving(event) {
-    if (event.nativeEvent instanceof MouseEvent) {
-      console.log("stopping moving");
-      this.setState({
-        moving: false,
-      });
-    }
-  }
-
-  move(timestamp) {
-    let x, y;
-    const speed = Variables.walkingSpeed;
-    const xSpeed = this.state.playerSpeed[0];
-    const ySpeed = this.state.playerSpeed[1];
-
-    x = this.state.playerLocation[0] + speed * xSpeed;
-    y = this.state.playerLocation[1] + speed * ySpeed;
-
-    this.setState({
-      playerLocation: [x, y],
-    })
-
-    if (this.state.moving) {
-      window.requestAnimationFrame(this.move);
-    }
-  }
-
-  startTurning(event) {
-    if (this.state.moving) {
-      event.persist();
-      this.setMovementVectors(event);
-    }
-  }
-
-  setMovementVectors(event) {
-    let facingTowards = this.state.playerFacingTowards;
-    let xSpeed, ySpeed;
-    const width = this.state.width;
-    const height = this.state.height;
-    const deadZone = 0.09;
-    const deltaX =  event.clientX - width  * 0.5;
-    const deltaY = (event.clientY - height * 0.5) * -1;
-
-    facingTowards = Variables.rightAngle(deltaX, deltaY);
-
-    // console.log(deltaX + " X");
-    // console.log(deltaY + " Y");
-    // console.log(facingTowards + "°");
-
-    this.setState({
-      playerFacingTowards: facingTowards,
-      playerSpeed: [Math.sign(deltaX), Math.sign(deltaY)],
-    })
-  }
+  // startMoving(event) {
+  //   if (event.nativeEvent instanceof MouseEvent) {
+  //     console.log("starting moving");
+  //     this.setState({
+  //       moving: true,
+  //     });
+  //     event.persist(); // allows it to be passed on
+  //     this.setMovementVectors(event);
+  //     window.requestAnimationFrame(this.move);
+  //   }
+  // }
+  //
+  // stopMoving(event) {
+  //   if (event.nativeEvent instanceof MouseEvent) {
+  //     console.log("stopping moving");
+  //     this.setState({
+  //       moving: false,
+  //     });
+  //   }
+  // }
+  //
+  // move(timestamp) {
+  //   let x, y;
+  //   const speed = Variables.walkingSpeed;
+  //   const xSpeed = this.state.playerSpeed[0];
+  //   const ySpeed = this.state.playerSpeed[1];
+  //   const zSpeed = this.state.playerSpeed[2];
+  //
+  //   x = this.state.playerLocation[0] + speed * xSpeed;
+  //   y = this.state.playerLocation[1] + speed * ySpeed;
+  //   z = this.state.playerLocation[2] + speed * zSpeed;
+  //
+  //   this.setState({
+  //     playerLocation: [x, y, z],
+  //   })
+  //
+  //   if (this.state.moving) {
+  //     window.requestAnimationFrame(this.move);
+  //   }
+  // }
+  //
+  // startTurning(event) {
+  //   if (this.state.moving) {
+  //     event.persist();
+  //     this.setMovementVectors(event);
+  //   }
+  // }
+  //
+  // setMovementVectors(event) {
+  //   let facingTowards = this.state.playerFacingTowards;
+  //   let xSpeed, ySpeed;
+  //   const width = this.state.width;
+  //   const height = this.state.height;
+  //   const deadZone = 0.09;
+  //   const deltaX =  event.clientX - width  * 0.5;
+  //   const deltaY = (event.clientY - height * 0.5) * -1;
+  //
+  //   facingTowards = Variables.rightAngle(deltaX, deltaY);
+  //
+  //   // console.log(deltaX + " X");
+  //   // console.log(deltaY + " Y");
+  //   // console.log(facingTowards + "°");
+  //
+  //   this.setState({
+  //     playerFacingTowards: facingTowards,
+  //     playerSpeed: [Math.sign(deltaX), 0, Math.sign(deltaY)],
+  //   })
+  // }
 
   render() {
     return (
@@ -164,31 +195,25 @@ export default class Game extends Component {
             "dev-mode": this.state.devMode,
           })
         }
-        onMouseDown={this.startMoving}
-        onMouseUp={this.stopMoving}
-        onMouseMove={this.startTurning}
         ref={(ref) => this.react = ref}
       >
 
-        <Motion
-          style={{
-            playerLocationX: spring(this.state.playerLocation[0], Variables.springConfig),
-            playerLocationY: spring(this.state.playerLocation[1], Variables.springConfig),
-          }}
-        >
-          {interpolation =>
-            <World
-              homeLocation={this.props.getHomeLocation}
-              playerLocation={[
-                interpolation.playerLocationX,
-                interpolation.playerLocationY,
-              ]}
-              playerFacingTowards={this.state.playerFacingTowards}
-              devMode={this.state.devMode}
-              inVR={this.state.inVR}
-            />
-          }
-        </Motion>
+        {/*onMouseDown={this.startMoving}
+        onMouseUp={this.stopMoving}
+        onMouseMove={this.startTurning}*/}
+
+        <World
+          homeLocation={this.props.getHomeLocation}
+          playerLocation={[
+            this.state.playerLocation[0],
+            this.state.playerLocation[1],
+            this.state.playerLocation[2],
+          ]}
+          playerFacingTowards={this.state.playerFacingTowards}
+          devMode={this.state.devMode}
+          inVR={this.state.inVR}
+        />
+      }
 
       </div>
     );
