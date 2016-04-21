@@ -88,12 +88,8 @@ export default class Game extends Component {
     });
   }
 
-  isMouseOrTouchEvent(event) {
-    return event instanceof MouseEvent || event instanceof TouchEvent;
-  }
-
   startMoving(event) {
-    if (this.isMouseOrTouchEvent(event.nativeEvent)) {
+    if (event.nativeEvent instanceof MouseEvent) {
       console.log("starting moving");
       this.setState({
         moving: true,
@@ -105,7 +101,7 @@ export default class Game extends Component {
   }
 
   stopMoving(event) {
-    if (this.isMouseOrTouchEvent(event.nativeEvent)) {
+    if (event.nativeEvent instanceof MouseEvent) {
       console.log("stopping moving");
       this.setState({
         moving: false,
@@ -171,9 +167,6 @@ export default class Game extends Component {
         onMouseDown={this.startMoving}
         onMouseUp={this.stopMoving}
         onMouseMove={this.startTurning}
-        onTouchStart={this.startMoving}
-        onTouchEnd={this.stopMoving}
-        onTouchMove={this.startTurning}
         ref={(ref) => this.react = ref}
       >
 
