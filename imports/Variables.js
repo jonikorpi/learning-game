@@ -4,11 +4,6 @@
 Variables = {};
 export default Variables;
 
-Variables.cameraAltitude = 8; // 10 is probably max
-Variables.cameraOffsetZ = 2;
-Variables.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI); // https://en.wikipedia.org/wiki/Pythagorean_triple#Examples
-Variables.clipRange = 1000;
-
 Variables.cursorDistance = 6;
 Variables.cursorSize = 0.1618;
 Variables.cursorThickness = 0.764;
@@ -22,6 +17,11 @@ Variables.walkingSpeed = 1;
 Variables.tileSize = 1;
 Variables.tilesPerRow = 13;
 Variables.tilesPerColumn = 13;
+
+Variables.cameraAltitude = 8; // 10 is probably max
+Variables.cameraOffsetZ = Variables.tilesPerColumn * 0.20;
+Variables.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI); // https://en.wikipedia.org/wiki/Pythagorean_triple#Examples
+Variables.clipRange = 1000;
 
 Variables.shortTime = function(exponent) {
   return Variables.time / Math.pow(1.618, exponent);

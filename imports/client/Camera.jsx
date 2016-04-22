@@ -10,16 +10,12 @@ import Cursor from "./Cursor";
 
 export default class Camera extends Component {
 
-  calculateCameraAngle() {
-    return 90 - Variables.cameraPositionAngle;
-  }
-
   render() {
     return (
       <Entity
         id="camera"
         rotation={[
-          this.calculateCameraAngle(),
+          90 - Variables.cameraPositionAngle,
           0,
           0,
         ]}
@@ -31,6 +27,11 @@ export default class Camera extends Component {
             Variables.cameraAltitude,
             0,
           ]}
+          rotation={[
+            (90 - Variables.cameraPositionAngle) * -1,
+            0,
+            0,
+          ]}
         >
 
           <Entity
@@ -39,9 +40,9 @@ export default class Camera extends Component {
               near: this.props.near || 0.001,
             }}
             rotation={[
-              -1 * this.calculateCameraAngle() - (90 - this.calculateCameraAngle()),
+              -Variables.cameraPositionAngle,
               0,
-              0,
+              0
             ]}
             look-controls={{ enabled: this.props.inVR || this.props.devMode }}
             wasd-controls={{ enabled: this.props.devMode }}
