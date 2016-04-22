@@ -12,7 +12,7 @@ export default class StarLight extends Component {
           type: "directional",
           intensity: 1,
         }}
-        position={[-1, 1, 1]}
+        position={[-1.5, 1, 1]}
       />
     );
   }

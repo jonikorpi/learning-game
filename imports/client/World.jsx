@@ -35,6 +35,7 @@ export default class World extends Component {
       Variables.tilesPerColumn * 0.5
       + Math.floor(playerLocation[2] / Variables.tilesPerColumn)
       * Variables.tilesPerColumn
+      + Variables.cameraOffsetZ
     ;
     return [x,y,z];
   }

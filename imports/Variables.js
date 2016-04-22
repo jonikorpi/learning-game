@@ -5,6 +5,7 @@ Variables = {};
 export default Variables;
 
 Variables.cameraAltitude = 8; // 10 is probably max
+Variables.cameraOffsetZ = 2;
 Variables.cameraPositionAngle = (Math.atan(4/3) * 180 / Math.PI); // https://en.wikipedia.org/wiki/Pythagorean_triple#Examples
 Variables.clipRange = 1000;
 
