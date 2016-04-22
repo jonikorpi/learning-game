@@ -5,14 +5,16 @@ import {Animation, Entity, Scene} from "aframe-react";
 
 import Variables from "../Variables";
 
+// import PlayerData from "./PlayerData";
+import Player from "./Player";
+
+import EnvironmentContainer from "./EnvironmentContainer";
+
+import Camera from "./Camera";
+import Sky from "./Sky";
+import Sea from "./Sea";
 import AmbientLight from "./AmbientLight";
 import StarLight from "./StarLight";
-import Sky from "./Sky";
-
-import Player from "./Player";
-import Camera from "./Camera";
-import Segment from "./Segment";
-import Sea from "./Sea";
 
 export default class World extends Component {
 
@@ -40,53 +42,6 @@ export default class World extends Component {
     return [-x,-y,-z];
   }
 
-  getSegments() {
-    const segments = [
-      {
-        loc: [0, 0],
-        tiles: [
-          [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
-          [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,],
-        ],
-      },
-      {
-        loc: [0, 1],
-        tiles: [
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
-        ],
-      },
-    ];
-
-    return segments.map(
-      function(data, i) {
-        return <Segment data={data} key={i}/>;
-      }
-    );
-  }
-
   render() {
     return (
       <Scene
@@ -105,8 +60,7 @@ export default class World extends Component {
             facingTowards={this.props.playerFacingTowards}
             position={this.props.playerLocation || [0, 0, 0]}
           />
-
-          {this.getSegments()}
+          <EnvironmentContainer/>
 
         </Entity>
 
