@@ -47,9 +47,9 @@ export default class Player extends Component {
             onMouseLeave={this.endPlayerHover}
             rotation={[0, this.props.facingTowards, 0]}
             position={[
-              interpolation.playerLocationX + 0.414*0.5,
+              interpolation.playerLocationX + Variables.tileSize * 0.5,
               interpolation.playerLocationY + 1.618*0.5,
-              interpolation.playerLocationZ + 0.236*0.5,
+              interpolation.playerLocationZ + Variables.tileSize * 0.5,
             ]}
           >
           </Entity>
