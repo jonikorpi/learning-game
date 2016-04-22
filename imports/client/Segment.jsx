@@ -21,21 +21,6 @@ export default class Segment extends Component {
     segmentX = data.loc[0];
     segmentZ = data.loc[1];
 
-    // return data.tiles.map(
-    //   function(row, tileZ) {
-    //     return row.map(
-    //       function(type, tileX, tileZ) {
-    //         return
-    //           <Tile
-    //             type={type}
-    //             position={[tileX, 0, tileZ]}
-    //           />
-    //         ;
-    //       }
-    //     )
-    //   }
-    // );
-
     let tiles = [];
 
     data.tiles.map(
