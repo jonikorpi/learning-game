@@ -36,9 +36,7 @@ export default class World extends Component {
       + Math.floor(playerLocation[2] / Variables.tilesPerColumn)
       * Variables.tilesPerColumn
     ;
-    const cameraCenter =  [x,y,z];
-    console.log(x + "," + z);
-    return cameraCenter;
+    return [x,y,z];
   }
 
   getSegments() {
