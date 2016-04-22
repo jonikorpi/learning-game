@@ -91,7 +91,6 @@ export default class World extends Component {
 
         <AmbientLight/>
         <StarLight/>
-        <Sky color="rgb(187,235,252)"/>
 
         <Entity
           id="center-on-camera"
@@ -101,13 +100,16 @@ export default class World extends Component {
             Variables.tilesPerColumn * 0.666,
           ]}
         >
+
           <Camera
             id="camera"
             far={Variables.clipRange * 1.5}
             devMode={this.props.devMode}
             inVR={this.props.inVR}
           />
+          <Sky color="rgb(187,235,252)"/>
           <Sea color="rgb(187,235,252)"/>
+
         </Entity>
 
       </Scene>
