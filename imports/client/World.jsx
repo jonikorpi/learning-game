@@ -97,14 +97,12 @@ export default class World extends Component {
       >
 
         <Entity
-          id="dont-center-on-camera"
+          id="does-not-move-with-camera"
           position={this.getCameraCenter(this.props.playerLocation)}
         >
 
           <Player
-            devMode={this.props.devMode}
             facingTowards={this.props.playerFacingTowards}
-            inVR={this.props.inVR}
             position={this.props.playerLocation || [0, 0, 0]}
           />
 
@@ -113,7 +111,7 @@ export default class World extends Component {
         </Entity>
 
         <Entity
-          id="center-on-camera"
+          id="moves-with-camera"
         >
 
           <Camera
