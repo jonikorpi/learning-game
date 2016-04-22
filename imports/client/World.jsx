@@ -24,6 +24,23 @@ export default class World extends Component {
 
   }
 
+  getCameraCenter(playerLocation) {
+    const x =
+      Variables.tilesPerRow * 0.5
+      + Math.floor(playerLocation[0] / Variables.tilesPerRow)
+      * Variables.tilesPerRow
+    ;
+    const y = 0;
+    const z =
+      Variables.tilesPerColumn * 0.5
+      + Math.floor(playerLocation[2] / Variables.tilesPerColumn)
+      * Variables.tilesPerColumn
+    ;
+    const cameraCenter =  [x,y,z];
+    console.log(x + "," + z);
+    return cameraCenter;
+  }
+
   getSegments() {
     const segments = [
       {
@@ -94,11 +111,7 @@ export default class World extends Component {
 
         <Entity
           id="center-on-camera"
-          position={[
-            Variables.tilesPerRow * 0.5,
-            0,
-            Variables.tilesPerColumn * 0.666,
-          ]}
+          position={this.getCameraCenter(this.props.playerLocation)}
         >
 
           <Camera
