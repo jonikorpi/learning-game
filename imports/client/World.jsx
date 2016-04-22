@@ -37,7 +37,7 @@ export default class World extends Component {
       * Variables.tilesPerColumn
       + Variables.cameraOffsetZ
     ;
-    return [x,y,z];
+    return [-x,-y,-z];
   }
 
   getSegments() {
@@ -96,21 +96,24 @@ export default class World extends Component {
         }}
       >
 
-        <Player
-          devMode={this.props.devMode}
-          facingTowards={this.props.playerFacingTowards}
-          inVR={this.props.inVR}
-          position={this.props.playerLocation || [0, 0, 0]}
-        />
+        <Entity
+          id="dont-center-on-camera"
+          position={this.getCameraCenter(this.props.playerLocation)}
+        >
 
-        {this.getSegments()}
+          <Player
+            devMode={this.props.devMode}
+            facingTowards={this.props.playerFacingTowards}
+            inVR={this.props.inVR}
+            position={this.props.playerLocation || [0, 0, 0]}
+          />
 
-        <AmbientLight/>
-        <StarLight/>
+          {this.getSegments()}
+
+        </Entity>
 
         <Entity
           id="center-on-camera"
-          position={this.getCameraCenter(this.props.playerLocation)}
         >
 
           <Camera
@@ -121,6 +124,8 @@ export default class World extends Component {
           />
           <Sky color="rgb(187,235,252)"/>
           <Sea color="rgb(187,235,252)"/>
+          <AmbientLight/>
+          <StarLight/>
 
         </Entity>
 
