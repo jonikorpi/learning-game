@@ -20,3 +20,4 @@ peerlibrary:reactive-mongo
 standard-minifier-css
 standard-minifier-js
 static-html
+react-meteor-data
