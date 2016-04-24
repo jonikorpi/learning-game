@@ -5,9 +5,7 @@ import {Animation, Entity, Scene} from "aframe-react";
 
 import Variables from "../Variables";
 
-// import PlayerData from "./PlayerData";
-import Player from "./Player";
-
+import PlayersContainer from "./PlayersContainer";
 import EnvironmentContainer from "./EnvironmentContainer";
 
 import Camera from "./Camera";
@@ -56,11 +54,8 @@ export default class World extends Component {
           position={this.getCameraCenter(this.props.playerLocation)}
         >
 
-          <Player
-            facingTowards={this.props.playerFacingTowards}
-            position={this.props.playerLocation || [0, 0, 0]}
-          />
           <EnvironmentContainer/>
+          <PlayersContainer/>
 
         </Entity>
 
